@@ -1,0 +1,25 @@
+/* ═══════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:80px;transition:all .4s}
+nav.solid{background:rgba(255,254,245,.95);backdrop-filter:blur(20px);box-shadow:0 2px 24px rgba(0,0,0,.08);border-bottom:2px solid var(--sun)}
+.nav-inner{max-width:1360px;margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+
+/* Brand */
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand-icon{width:50px;height:50px;border-radius:14px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--sun);letter-spacing:-1px;position:relative;overflow:hidden;flex-shrink:0}
+.brand-icon::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,var(--sun),var(--coral),var(--violet));border-radius:16px;z-index:-1}
+.brand-text strong{display:block;font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--navy);line-height:1.1}
+.brand-text em{display:block;font-style:normal;font-size:10px;font-weight:700;color:var(--sky-d);letter-spacing:2px;text-transform:uppercase}
+
+/* Menu */
+.nav-menu{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-menu a{padding:8px 14px;border-radius:50px;font-size:13.5px;font-weight:700;color:var(--navy3);text-decoration:none;transition:all .2s;white-space:nowrap}
+.nav-menu a:hover,.nav-menu a.active{color:var(--navy);background:var(--sun)}
+
+/* Nav Actions */
+.nav-actions{display:flex;gap:.5rem;align-items:center}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2.5px;background:var(--navy);border-radius:2px;transition:all .3s;display:block}
+
+/* Mobile nav open state handled in responsive.css */

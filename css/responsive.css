@@ -1,0 +1,137 @@
+/* ═══════════════════════════════════════
+   RESPONSIVE — Mobile · Tablet · Desktop
+   Breakpoints:
+     Desktop  : > 1100px  (default styles)
+     Tablet   : 768px – 1100px
+     Mobile   : < 768px
+     Mobile S : < 480px
+   ═══════════════════════════════════════ */
+
+/* ── TABLET (768px – 1100px) ── */
+@media(max-width:1100px){
+  /* Hero */
+  .hero-inner{grid-template-columns:1fr;padding-top:100px}
+  .hero-card{display:none}
+
+  /* Sections */
+  .about-grid,
+  .visi-grid,
+  .kontak-grid,
+  .news-grid{grid-template-columns:1fr}
+
+  /* Dampak: 2 columns on tablet */
+  .dampak-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Roadmap: hide connector line */
+  .roadmap-grid::before{display:none}
+
+  /* Footer: 2 columns */
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── MOBILE (< 768px) ── */
+@media(max-width:768px){
+  section{padding:72px 0}
+
+  /* Nav */
+  .nav-menu{display:none}
+  .hamburger{display:flex}
+  .nav-menu.open{
+    display:flex;
+    flex-direction:column;
+    position:absolute;
+    top:80px;left:0;right:0;
+    background:rgba(255,254,245,.98);
+    padding:1.5rem 2rem;
+    border-top:2px solid var(--sun);
+    box-shadow:0 16px 40px rgba(0,0,0,.12);
+    gap:.25rem
+  }
+
+  /* Program: single column */
+  .prog-grid,
+  .roadmap-grid,
+  .testi-grid{grid-template-columns:1fr}
+
+  /* Featured program card: stack vertically */
+  .prog-card.featured{grid-column:span 1;grid-template-columns:1fr}
+  .prog-card.featured .prog-thumb{min-height:160px}
+
+  /* Founder & Partner: 2 columns */
+  .founder-grid,
+  .partner-grid{grid-template-columns:1fr 1fr}
+
+  /* Quiz & Calculator: single column inputs */
+  .quiz-options,
+  .calc-row,
+  .fg-row{grid-template-columns:1fr}
+
+  /* Hero heading size tweak */
+  .hero-h1{font-size:clamp(2.4rem,8vw,3.5rem)}
+
+  /* Hero buttons: full width */
+  .hero-btns{flex-direction:column}
+  .hbtn-primary,.hbtn-secondary{width:100%;justify-content:center}
+
+  /* Dampak: keep 2 cols */
+  .dampak-panel{padding:2.5rem 1.5rem}
+
+  /* About visual: 2 cols */
+  .about-visual{grid-template-columns:1fr 1fr}
+
+  /* Timeline: collapse to single column */
+  .timeline-spine{display:none}
+  .tl-node{grid-template-columns:1fr;gap:.75rem}
+  .tl-mid,.tl-emp{display:none}
+  .tl-node .tl-crd{grid-column:1 !important;text-align:left !important}
+
+  /* Count strip */
+  .count-strip{grid-template-columns:1fr 1fr 1fr}
+
+  /* Visi misi grid */
+  .visi-grid{gap:1.5rem}
+
+  /* Footer: single column */
+  .footer-grid{grid-template-columns:1fr}
+  .footer-col h4{margin-top:1.5rem}
+}
+
+/* ── MOBILE S (< 480px) ── */
+@media(max-width:480px){
+  /* Founder & Partner: full width */
+  .founder-grid,
+  .partner-grid{grid-template-columns:1fr}
+
+  /* About visual: single column */
+  .about-visual{grid-template-columns:1fr}
+  .acard:nth-child(1){grid-column:span 1}
+
+  /* Dampak: 2 cols kept */
+  .dampak-grid{grid-template-columns:1fr 1fr}
+
+  /* Testimonials */
+  .testi-grid{grid-template-columns:1fr}
+
+  /* Hero padding */
+  .hero-inner{padding:100px 1.25rem 60px}
+  .wrap{padding:0 1.25rem}
+
+  /* Roadmap: single col */
+  .roadmap-grid{grid-template-columns:1fr}
+
+  /* Count strip: single col */
+  .count-strip{grid-template-columns:1fr}
+
+  /* VM grid */
+  .vm-grid{grid-template-columns:1fr}
+
+  /* Calc result */
+  .calc-result{grid-template-columns:1fr}
+
+  /* Quiz score */
+  .quiz-result-score{font-size:4rem}
+
+  /* News grid */
+  .news-grid{grid-template-columns:1fr}
+  .news-main-thumb{height:180px;font-size:4rem}
+}

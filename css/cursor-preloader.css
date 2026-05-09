@@ -1,0 +1,24 @@
+/* ═══════════════════════════════════════
+   CURSOR & PRELOADER
+   ═══════════════════════════════════════ */
+
+/* Custom Cursor */
+#cur-dot{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--sun);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .08s,width .2s,height .2s,background .2s}
+#cur-ring{position:fixed;width:38px;height:38px;border-radius:50%;border:2px solid var(--sky);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .18s cubic-bezier(.22,1,.36,1),width .25s,height .25s,border-color .25s,opacity .25s}
+body.hover-cta #cur-dot{width:6px;height:6px;background:var(--coral)}
+body.hover-cta #cur-ring{width:52px;height:52px;border-color:var(--coral);opacity:.6}
+@media(hover:none){#cur-dot,#cur-ring{display:none}}
+
+/* Preloader */
+#pre{position:fixed;inset:0;z-index:999999;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .8s ease,visibility .8s}
+#pre.gone{opacity:0;visibility:hidden;pointer-events:none}
+.pre-logo-wrap{position:relative;width:100px;height:100px}
+.pre-hex{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.pre-hex svg{animation:hexSpin 2s linear infinite}
+@keyframes hexSpin{to{transform:rotate(360deg)}}
+.pre-initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;font-weight:700;color:var(--sun);letter-spacing:-2px}
+.pre-pct{font-family:var(--font-m);font-size:3.5rem;font-weight:700;color:var(--white);letter-spacing:-2px}
+.pre-pct span{color:var(--sun)}
+.pre-bar{width:240px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.pre-bar-fill{height:100%;background:linear-gradient(90deg,var(--sun),var(--coral));border-radius:2px;transition:width .1s}
+.pre-txt{font-family:var(--font-b);font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:3px;text-transform:uppercase}
