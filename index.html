@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPM Foundation — Sahabat Pendidikan Maju</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sun:#FFD93D;--sun-d:#FFC107;--sun-dd:#E6A500;
+  --sky:#06B6D4;--sky-d:#0891B2;--sky-dd:#0E7490;
+  --lime:#84CC16;--lime-d:#65A30D;--lime-dd:#4D7C0F;
+  --coral:#FF6B6B;--coral-d:#EF4444;--coral-dd:#DC2626;
+  --violet:#A855F7;--violet-d:#9333EA;--violet-dd:#7C3AED;
+  --navy:#0F172A;--navy2:#1E293B;--navy3:#334155;
+  --white:#FFFFFF;--off:#FFFEF5;--cream:#FFF9E6;
+  --gray1:#F8FAFC;--gray2:#E2E8F0;--gray3:#94A3B8;--gray4:#475569;
+  --font-h:'Clash Display',sans-serif;
+  --font-b:'Nunito',sans-serif;
+  --font-m:'Space Mono',monospace;
+  --r:16px;--rs:8px;--rl:24px;
+  --shadow:0 8px 32px rgba(0,0,0,.12);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.18);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-b);background:var(--off);color:var(--navy);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cur-dot{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--sun);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .08s,width .2s,height .2s,background .2s}
+#cur-ring{position:fixed;width:38px;height:38px;border-radius:50%;border:2px solid var(--sky);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .18s cubic-bezier(.22,1,.36,1),width .25s,height .25s,border-color .25s,opacity .25s}
+body.hover-cta #cur-dot{width:6px;height:6px;background:var(--coral)}
+body.hover-cta #cur-ring{width:52px;height:52px;border-color:var(--coral);opacity:.6}
+@media(hover:none){#cur-dot,#cur-ring{display:none}}
+
+/* SCROLL BAR */
+#pbar{position:fixed;top:0;left:0;height:4px;z-index:10000;background:linear-gradient(90deg,var(--sun),var(--coral),var(--violet),var(--sky),var(--lime));width:0;transition:width .1s}
+
+/* PRELOADER */
+#pre{position:fixed;inset:0;z-index:999999;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .8s ease,visibility .8s}
+#pre.gone{opacity:0;visibility:hidden;pointer-events:none}
+.pre-logo-wrap{position:relative;width:100px;height:100px}
+.pre-hex{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.pre-hex svg{animation:hexSpin 2s linear infinite}
+@keyframes hexSpin{to{transform:rotate(360deg)}}
+.pre-initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.8rem;font-weight:700;color:var(--sun);letter-spacing:-2px}
+.pre-pct{font-family:var(--font-m);font-size:3.5rem;font-weight:700;color:var(--white);letter-spacing:-2px}
+.pre-pct span{color:var(--sun)}
+.pre-bar{width:240px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.pre-bar-fill{height:100%;background:linear-gradient(90deg,var(--sun),var(--coral));border-radius:2px;transition:width .1s}
+.pre-txt{font-family:var(--font-b);font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:3px;text-transform:uppercase}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:80px;transition:all .4s}
+nav.solid{background:rgba(255,254,245,.95);backdrop-filter:blur(20px);box-shadow:0 2px 24px rgba(0,0,0,.08);border-bottom:2px solid var(--sun)}
+.nav-inner{max-width:1360px;margin:0 auto;padding:0 2rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand-icon{width:50px;height:50px;border-radius:14px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--sun);letter-spacing:-1px;position:relative;overflow:hidden;flex-shrink:0}
+.brand-icon::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,var(--sun),var(--coral),var(--violet));border-radius:16px;z-index:-1}
+.brand-text strong{display:block;font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--navy);line-height:1.1}
+.brand-text em{display:block;font-style:normal;font-size:10px;font-weight:700;color:var(--sky-d);letter-spacing:2px;text-transform:uppercase}
+.nav-menu{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-menu a{padding:8px 14px;border-radius:50px;font-size:13.5px;font-weight:700;color:var(--navy3);text-decoration:none;transition:all .2s;white-space:nowrap}
+.nav-menu a:hover,.nav-menu a.active{color:var(--navy);background:var(--sun)}
+.nav-actions{display:flex;gap:.5rem;align-items:center}
+.btn-outline{padding:9px 20px;border-radius:50px;font-family:var(--font-b);font-size:13px;font-weight:800;cursor:pointer;border:2px solid var(--navy);background:transparent;color:var(--navy);transition:all .25s}
+.btn-outline:hover{background:var(--navy);color:var(--white)}
+.btn-solid{padding:9px 22px;border-radius:50px;font-family:var(--font-b);font-size:13px;font-weight:800;cursor:pointer;border:2px solid var(--coral);background:var(--coral);color:var(--white);transition:all .3s;box-shadow:0 4px 16px rgba(255,107,107,.35)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,107,.5);background:var(--coral-d)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2.5px;background:var(--navy);border-radius:2px;transition:all .3s;display:block}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--navy);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-blobs{position:absolute;inset:0;z-index:1;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;animation:blobFloat 8s ease-in-out infinite}
+.blob1{width:500px;height:500px;background:var(--sky);top:-10%;left:-10%;animation-delay:0s}
+.blob2{width:400px;height:400px;background:var(--violet);top:20%;right:-5%;animation-delay:2s}
+.blob3{width:350px;height:350px;background:var(--coral);bottom:10%;left:30%;animation-delay:4s}
+.blob4{width:300px;height:300px;background:var(--lime);bottom:-5%;right:20%;animation-delay:1s}
+@keyframes blobFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.05)}}
+.hero-noise{position:absolute;inset:0;z-index:2;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
+.hero-grid{position:absolute;inset:0;z-index:2;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-inner{position:relative;z-index:5;max-width:1360px;margin:0 auto;width:100%;padding:120px 2rem 80px;display:grid;grid-template-columns:1fr 520px;gap:5rem;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:50px;background:rgba(255,217,61,.12);border:1px solid rgba(255,217,61,.3);margin-bottom:2rem}
+.eyebrow-pulse{width:8px;height:8px;border-radius:50%;background:var(--sun);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,217,61,.6)}50%{box-shadow:0 0 0 10px rgba(255,217,61,0)}}
+.eyebrow-text{font-family:var(--font-m);font-size:11px;font-weight:700;color:var(--sun);letter-spacing:2px;text-transform:uppercase}
+.hero-h1{font-family:var(--font-h);font-size:clamp(3rem,5.5vw,5.5rem);font-weight:700;color:var(--white);line-height:1.05;margin-bottom:1.75rem}
+.hero-h1 .word{display:inline-block;overflow:hidden;vertical-align:top}
+.hero-h1 .inner{display:inline-block;transform:translateY(100%);transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.hero-h1 .acc-sun{color:var(--sun)}
+.hero-h1 .acc-sky{color:var(--sky)}
+.hero-h1 .acc-lime{color:var(--lime)}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.7);line-height:1.85;max-width:540px;margin-bottom:2.5rem;opacity:0;transition:opacity .8s .6s}
+.hero-desc.vis{opacity:1}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;opacity:0;transition:opacity .8s .8s}
+.hero-btns.vis{opacity:1}
+.hbtn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:50px;background:var(--sun);color:var(--navy);font-family:var(--font-b);font-size:15px;font-weight:900;border:none;cursor:pointer;text-decoration:none;box-shadow:0 8px 28px rgba(255,217,61,.45);transition:all .3s}
+.hbtn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,217,61,.6);background:var(--sun-d)}
+.hbtn-secondary{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;background:rgba(255,255,255,.08);color:var(--white);font-family:var(--font-b);font-size:15px;font-weight:700;border:1.5px solid rgba(255,255,255,.2);cursor:pointer;text-decoration:none;transition:all .3s}
+.hbtn-secondary:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.5)}
+.hero-social-row{display:flex;align-items:center;gap:.75rem;opacity:0;transition:opacity .8s 1s}
+.hero-social-row.vis{opacity:1}
+.soc-lbl{font-family:var(--font-m);font-size:10px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-right:.25rem}
+.soc-btn{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;transition:all .25s}
+.soc-btn:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
+
+/* HERO CARD */
+.hero-card{background:rgba(255,255,255,.06);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:2rem;opacity:0;transform:translateX(40px);transition:opacity .9s .4s,transform .9s .4s}
+.hero-card.vis{opacity:1;transform:translateX(0)}
+.hcard-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.hcard-title{font-family:var(--font-h);font-size:14px;font-weight:600;color:rgba(255,255,255,.9)}
+.live-badge{display:flex;align-items:center;gap:5px;background:rgba(132,204,22,.15);border:1px solid rgba(132,204,22,.3);border-radius:50px;padding:4px 12px;font-family:var(--font-m);font-size:9px;font-weight:700;color:var(--lime)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--lime);animation:liveBlink 1.5s ease-in-out infinite}
+@keyframes liveBlink{0%,100%{opacity:1}50%{opacity:.2}}
+.hcard-stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.hstat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1rem;transition:all .3s;cursor:default}
+.hstat:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hstat-icon{font-size:1.3rem;margin-bottom:.5rem;display:block}
+.hstat-val{font-family:var(--font-h);font-size:1.8rem;font-weight:700;color:var(--white);display:block;line-height:1}
+.hstat-lbl{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.4);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;display:block}
+.hstat:nth-child(1) .hstat-val{color:var(--sky)}
+.hstat:nth-child(2) .hstat-val{color:var(--sun)}
+.hstat:nth-child(3) .hstat-val{color:var(--lime)}
+.hstat:nth-child(4) .hstat-val{color:var(--violet)}
+.hcard-chart{background:rgba(255,255,255,.03);border-radius:12px;padding:1rem;margin-bottom:1rem}
+.chart-lbl{font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:.75rem;text-transform:uppercase}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:60px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar-fill{width:100%;border-radius:4px 4px 0 0;transition:height .6s cubic-bezier(.34,1.56,.64,1)}
+.bar-mo{font-size:8px;color:rgba(255,255,255,.3);font-family:var(--font-m)}
+.hcard-feed{display:flex;flex-direction:column;gap:.5rem}
+.feed-item{display:flex;align-items:center;gap:.75rem;padding:.625rem .75rem;background:rgba(255,255,255,.04);border-radius:10px;transition:background .2s}
+.feed-item:hover{background:rgba(255,255,255,.08)}
+.feed-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.feed-txt{font-size:11.5px;color:rgba(255,255,255,.75);font-weight:600;flex:1}
+.feed-time{font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,.3);flex-shrink:0}
+
+/* SCROLL HINT */
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeUp 1s ease 2.5s forwards}
+@keyframes fadeUp{to{opacity:1}}
+.scroll-word{font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:3px;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(180deg,rgba(255,217,61,.6),rgba(255,217,61,0));animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.5}}
+
+/* TICKER */
+.ticker-strip{background:var(--sun);padding:12px 0;overflow:hidden;white-space:nowrap;position:relative}
+.ticker-scroll{display:inline-flex;animation:ticker 45s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:.5rem;padding:0 2.5rem;font-family:var(--font-b);font-size:13px;font-weight:800;color:var(--navy)}
+.ticker-item::before{content:'★';font-size:.75rem;color:var(--coral-d)}
+.ticker-strip:hover .ticker-scroll{animation-play-state:paused}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION BASE */
+section{padding:100px 0}
+.wrap{max-width:1360px;margin:0 auto;padding:0 2rem}
+
+/* REVEAL ANIM */
+.rw{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rw.in{opacity:1;transform:translateY(0)}
+.rw[data-d="1"]{transition-delay:.1s}.rw[data-d="2"]{transition-delay:.2s}.rw[data-d="3"]{transition-delay:.3s}
+.rw[data-d="4"]{transition-delay:.4s}.rw[data-d="5"]{transition-delay:.5s}
+
+/* SECTION HEADER */
+.sec-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:50px;font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.tag-sun{background:rgba(255,217,61,.15);color:var(--sun-dd);border:1px solid rgba(255,217,61,.3)}
+.tag-sky{background:rgba(6,182,212,.1);color:var(--sky-dd);border:1px solid rgba(6,182,212,.25)}
+.tag-lime{background:rgba(132,204,22,.1);color:var(--lime-dd);border:1px solid rgba(132,204,22,.25)}
+.tag-coral{background:rgba(255,107,107,.1);color:var(--coral-dd);border:1px solid rgba(255,107,107,.25)}
+.tag-violet{background:rgba(168,85,247,.1);color:var(--violet-dd);border:1px solid rgba(168,85,247,.25)}
+.sec-h2{font-family:var(--font-h);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;line-height:1.1;color:var(--navy);margin-bottom:1rem}
+.sec-h2 em{font-style:normal;color:var(--coral-d)}
+.sec-h2 .acc-sky{color:var(--sky-d)}
+.sec-h2 .acc-lime{color:var(--lime-d)}
+.sec-h2 .acc-violet{color:var(--violet-d)}
+.sec-p{font-size:16px;color:var(--gray4);line-height:1.85;max-width:560px}
+.sec-hdr{margin-bottom:4rem}
+.sec-hdr.center{text-align:center}.sec-hdr.center .sec-p{margin:0 auto}
+
+/* ABOUT */
+#tentang{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-visual{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.acard{border-radius:20px;overflow:hidden;position:relative}
+.acard-inner{padding-top:80%;position:relative}
+.acard-fill{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.625rem;padding:1rem}
+.acard:nth-child(1) .acard-fill{background:linear-gradient(145deg,#0F172A,#1E293B)}
+.acard:nth-child(2) .acard-fill{background:linear-gradient(145deg,#FFD93D,#FFC107)}
+.acard:nth-child(3) .acard-fill{background:linear-gradient(145deg,#06B6D4,#0891B2)}
+.acard:nth-child(4) .acard-fill{background:linear-gradient(145deg,#84CC16,#65A30D)}
+.acard:nth-child(1){grid-column:span 2}
+.acard-icon{font-size:2.75rem;display:block}
+.acard-name{font-family:var(--font-h);font-size:15px;font-weight:700;text-align:center}
+.acard:nth-child(1) .acard-name{color:rgba(255,255,255,.9)}
+.acard:nth-child(2) .acard-name{color:var(--navy)}
+.acard:nth-child(3) .acard-name{color:var(--white)}
+.acard:nth-child(4) .acard-name{color:var(--white)}
+.acard-sub{font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:.5px}
+.acard:nth-child(1) .acard-sub{background:rgba(255,217,61,.2);color:var(--sun)}
+.acard:nth-child(2) .acard-sub{background:rgba(15,23,42,.15);color:var(--navy)}
+.acard:nth-child(3) .acard-sub{background:rgba(255,255,255,.2);color:var(--white)}
+.acard:nth-child(4) .acard-sub{background:rgba(255,255,255,.2);color:var(--white)}
+.vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;margin-top:2rem}
+.vm-box{border-radius:16px;padding:1.5rem;border-left:4px solid}
+.vm-box.v{background:rgba(6,182,212,.06);border-color:var(--sky)}
+.vm-box.m{background:rgba(132,204,22,.06);border-color:var(--lime)}
+.vm-box h4{font-family:var(--font-h);font-size:15px;font-weight:700;margin-bottom:.5rem}
+.vm-box.v h4{color:var(--sky-dd)}
+.vm-box.m h4{color:var(--lime-dd)}
+.vm-box p{font-size:12.5px;color:var(--gray4);line-height:1.65}
+.count-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.cnt-box{background:var(--off);border-radius:14px;padding:1.25rem;text-align:center;border:2px solid var(--gray2);transition:all .3s}
+.cnt-box:hover{border-color:var(--sun);transform:translateY(-3px)}
+.cnt-num{font-family:var(--font-h);font-size:2.2rem;font-weight:700;color:var(--navy);display:block}
+.cnt-lbl{font-size:11.5px;font-weight:700;color:var(--gray3);margin-top:4px;display:block}
+
+/* TIMELINE */
+#sejarah{background:var(--off)}
+.timeline-wrap{max-width:900px;margin:0 auto;position:relative}
+.timeline-spine{position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--gray2);transform:translateX(-50%)}
+.tl-spine-fill{position:absolute;top:0;width:100%;background:linear-gradient(180deg,var(--sun),var(--coral),var(--violet));border-radius:2px}
+.tl-node{display:grid;grid-template-columns:1fr 80px 1fr;gap:2rem;align-items:center;margin-bottom:4rem;position:relative;z-index:1}
+.tl-node:nth-child(even) .tl-crd{grid-column:1;text-align:right}
+.tl-node:nth-child(even) .tl-mid{grid-column:2}
+.tl-node:nth-child(even) .tl-emp{grid-column:3}
+.tl-node:nth-child(odd) .tl-emp{grid-column:1}
+.tl-node:nth-child(odd) .tl-mid{grid-column:2}
+.tl-node:nth-child(odd) .tl-crd{grid-column:3}
+.tl-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.tl-dot{width:26px;height:26px;border-radius:50%;border:4px solid var(--white);box-shadow:0 0 0 4px rgba(0,0,0,.1);transition:all .4s var(--spring)}
+.tl-node:nth-child(1) .tl-dot{background:var(--sun)}
+.tl-node:nth-child(2) .tl-dot{background:var(--sky)}
+.tl-node:nth-child(3) .tl-dot{background:var(--coral)}
+.tl-crd{background:var(--white);border-radius:18px;padding:1.75rem;border:2px solid var(--gray2);transition:all .3s;cursor:default}
+.tl-crd:hover{box-shadow:0 16px 48px rgba(0,0,0,.1);transform:translateY(-6px);border-color:transparent}
+.tl-era{font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.625rem}
+.tl-node:nth-child(1) .tl-era{color:var(--sun-dd)}
+.tl-node:nth-child(2) .tl-era{color:var(--sky-d)}
+.tl-node:nth-child(3) .tl-era{color:var(--coral-d)}
+.tl-title{font-family:var(--font-h);font-size:19px;font-weight:700;color:var(--navy);margin-bottom:.625rem}
+.tl-body{font-size:13.5px;color:var(--gray4);line-height:1.7}
+.tl-pill{display:inline-block;margin-top:1rem;padding:5px 14px;border-radius:50px;font-family:var(--font-m);font-size:9px;font-weight:700;letter-spacing:1px}
+.tl-node:nth-child(1) .tl-pill{background:rgba(255,217,61,.15);color:var(--sun-dd)}
+.tl-node:nth-child(2) .tl-pill{background:rgba(6,182,212,.1);color:var(--sky-dd)}
+.tl-node:nth-child(3) .tl-pill{background:rgba(255,107,107,.1);color:var(--coral-dd)}
+
+/* VISI MISI */
+#visi{background:var(--navy);position:relative;overflow:hidden}
+#visi::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(168,85,247,.15),transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(6,182,212,.1),transparent 50%)}
+.visi-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;position:relative;z-index:1}
+.visi-box{background:rgba(255,255,255,.06);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:2.5rem}
+.visi-box-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.visi-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.visi-icon.sun{background:rgba(255,217,61,.2)}
+.visi-icon.sky{background:rgba(6,182,212,.2)}
+.visi-box h3{font-family:var(--font-h);font-size:1.6rem;font-weight:700;color:var(--white)}
+.visi-box p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.85}
+.visi-theme-badge{margin-top:1.5rem;display:inline-block;background:rgba(255,217,61,.1);border:1px solid rgba(255,217,61,.25);border-radius:50px;padding:8px 20px;font-family:var(--font-m);font-size:11px;color:var(--sun);letter-spacing:.5px}
+.misi-list{display:flex;flex-direction:column;gap:.75rem}
+.misi-row{display:flex;gap:1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.25rem;transition:all .3s;cursor:default}
+.misi-row:hover{background:rgba(255,255,255,.1);transform:translateX(8px)}
+.misi-num-badge{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:12px;font-weight:700;color:var(--navy);flex-shrink:0;margin-top:1px}
+.mn1{background:var(--sun)}.mn2{background:var(--sky)}.mn3{background:var(--lime)}.mn4{background:var(--violet)}.mn5{background:var(--coral)}
+.misi-row h4{font-size:13.5px;font-weight:800;color:var(--white);margin-bottom:.3rem}
+.misi-row p{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6}
+
+/* PROGRAM */
+#program{background:var(--white)}
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prog-card{border-radius:22px;overflow:hidden;border:2px solid var(--gray2);background:var(--white);transition:all .35s cubic-bezier(.22,1,.36,1);cursor:pointer;position:relative}
+.prog-card:hover{transform:translateY(-10px);box-shadow:0 24px 60px rgba(0,0,0,.14);border-color:transparent}
+.prog-thumb{height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+.prog-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.2))}
+.prog-card:nth-child(1) .prog-thumb{background:linear-gradient(145deg,var(--off),#E2E8F0)}
+.prog-card:nth-child(2) .prog-thumb{background:linear-gradient(145deg,rgba(255,217,61,.15),rgba(255,217,61,.3))}
+.prog-card:nth-child(3) .prog-thumb{background:linear-gradient(145deg,rgba(6,182,212,.1),rgba(6,182,212,.25))}
+.prog-card:nth-child(4) .prog-thumb{background:linear-gradient(145deg,rgba(132,204,22,.1),rgba(132,204,22,.25))}
+.prog-card:nth-child(5) .prog-thumb{background:linear-gradient(145deg,rgba(168,85,247,.1),rgba(168,85,247,.25))}
+.prog-badge{position:absolute;top:14px;left:14px;z-index:2;padding:5px 12px;border-radius:50px;font-family:var(--font-m);font-size:9px;font-weight:700;letter-spacing:1px;color:var(--white)}
+.prog-card:nth-child(1) .prog-badge{background:var(--navy)}
+.prog-card:nth-child(2) .prog-badge{background:var(--sun-dd)}
+.prog-card:nth-child(3) .prog-badge{background:var(--sky-d)}
+.prog-card:nth-child(4) .prog-badge{background:var(--lime-d)}
+.prog-card:nth-child(5) .prog-badge{background:var(--violet)}
+.prog-body{padding:1.5rem}
+.prog-body h3{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.prog-body p{font-size:13px;color:var(--gray4);line-height:1.65;margin-bottom:1rem}
+.prog-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.prog-tag{font-size:10.5px;font-weight:700;color:var(--gray4);background:var(--off);border-radius:50px;padding:4px 10px;border:1px solid var(--gray2)}
+.prog-link-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;text-decoration:none;transition:gap .2s}
+.prog-card:nth-child(1) .prog-link-btn{color:var(--navy)}
+.prog-card:nth-child(2) .prog-link-btn{color:var(--sun-dd)}
+.prog-card:nth-child(3) .prog-link-btn{color:var(--sky-d)}
+.prog-card:nth-child(4) .prog-link-btn{color:var(--lime-d)}
+.prog-card:nth-child(5) .prog-link-btn{color:var(--violet)}
+.prog-card:hover .prog-link-btn{gap:12px}
+/* big featured */
+.prog-card.featured{grid-column:span 3;display:grid;grid-template-columns:1fr 1.2fr;border-radius:22px}
+.prog-card.featured .prog-thumb{height:auto;min-height:240px;border-radius:0;flex-direction:column;gap:1rem;font-size:6rem;background:linear-gradient(145deg,var(--navy),var(--navy2))}
+.prog-card.featured .prog-thumb::after{display:none}
+.prog-card.featured .prog-thumb-sub{font-size:13px;font-weight:700;color:rgba(255,255,255,.6)}
+.prog-card.featured .prog-badge{background:var(--sun);color:var(--navy)}
+.prog-card.featured .prog-body{padding:2.5rem}
+.prog-card.featured h3{font-size:1.5rem}
+
+/* DAMPAK */
+#dampak{background:var(--off)}
+.dampak-panel{background:linear-gradient(145deg,var(--navy),#1a0533,#0a1a2e);border-radius:28px;padding:4rem;position:relative;overflow:hidden}
+.dampak-panel::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.015' fill-rule='evenodd'%3E%3Ccircle cx='40' cy='40' r='6'/%3E%3C/g%3E%3C/svg%3E")}
+.dampak-title{text-align:center;margin-bottom:3.5rem;position:relative;z-index:1}
+.dampak-title h2{font-family:var(--font-h);font-size:clamp(1.9rem,3.5vw,3rem);font-weight:700;color:var(--white)}
+.dampak-title p{color:rgba(255,255,255,.55);margin-top:.5rem;font-size:15px}
+.dampak-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:1}
+.dk-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:2rem;text-align:center;transition:all .3s;cursor:default;position:relative;overflow:hidden}
+.dk-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.dk-card:nth-child(1)::before{background:linear-gradient(145deg,rgba(6,182,212,.15),transparent)}
+.dk-card:nth-child(2)::before{background:linear-gradient(145deg,rgba(255,217,61,.15),transparent)}
+.dk-card:nth-child(3)::before{background:linear-gradient(145deg,rgba(132,204,22,.15),transparent)}
+.dk-card:nth-child(4)::before{background:linear-gradient(145deg,rgba(168,85,247,.15),transparent)}
+.dk-card:hover::before{opacity:1}
+.dk-card:hover{transform:translateY(-6px)}
+.dk-icon{font-size:2.25rem;display:block;margin-bottom:1rem}
+.dk-val{font-family:var(--font-h);font-size:3rem;font-weight:700;color:var(--white);display:block;line-height:1}
+.dk-card:nth-child(1) .dk-val{color:var(--sky)}
+.dk-card:nth-child(2) .dk-val{color:var(--sun)}
+.dk-card:nth-child(3) .dk-val{color:var(--lime)}
+.dk-card:nth-child(4) .dk-val{color:var(--violet)}
+.dk-lbl{font-family:var(--font-m);font-size:10px;font-weight:700;color:rgba(255,255,255,.45);margin-top:.5rem;display:block;text-transform:uppercase;letter-spacing:1px}
+
+/* FOUNDER */
+#founder{background:var(--white)}
+.founder-intro-box{background:linear-gradient(145deg,rgba(6,182,212,.07),rgba(132,204,22,.07));border-radius:20px;border:2px solid rgba(6,182,212,.15);padding:2.5rem;text-align:center;max-width:800px;margin:0 auto 3.5rem}
+.founder-intro-box p{font-size:15px;color:var(--gray4);line-height:1.85;max-width:650px;margin:0 auto}
+.founder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.founder-card{background:var(--off);border-radius:20px;padding:2rem;border:2px solid var(--gray2);transition:all .35s cubic-bezier(.22,1,.36,1);cursor:default;text-align:center;position:relative;overflow:hidden}
+.founder-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;border-radius:0 0 18px 18px;opacity:0;transition:opacity .3s}
+.fc0::after{background:linear-gradient(90deg,var(--sky),var(--sky-d))}.fc1::after{background:linear-gradient(90deg,var(--sun),var(--sun-d))}.fc2::after{background:linear-gradient(90deg,var(--lime),var(--lime-d))}.fc3::after{background:linear-gradient(90deg,var(--violet),var(--violet-d))}.fc4::after{background:linear-gradient(90deg,var(--coral),var(--coral-d))}.fc5::after{background:linear-gradient(90deg,var(--sky-d),var(--lime-d))}
+.founder-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.12);border-color:transparent}
+.founder-card:hover::after{opacity:1}
+.founder-avatar{width:78px;height:78px;border-radius:50%;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.3rem;font-weight:700;color:var(--white);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.fc0 .founder-avatar{background:linear-gradient(145deg,var(--sky),var(--sky-d))}
+.fc1 .founder-avatar{background:linear-gradient(145deg,var(--sun),var(--sun-d))}
+.fc2 .founder-avatar{background:linear-gradient(145deg,var(--lime-d),var(--lime-dd))}
+.fc3 .founder-avatar{background:linear-gradient(145deg,var(--violet),var(--violet-d))}
+.fc4 .founder-avatar{background:linear-gradient(145deg,var(--coral),var(--coral-d))}
+.fc5 .founder-avatar{background:linear-gradient(145deg,var(--sky-d),var(--lime-d))}
+.founder-card h4{font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+.founder-role{font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.625rem}
+.fc0 .founder-role{color:var(--sky-d)}.fc1 .founder-role{color:var(--sun-dd)}.fc2 .founder-role{color:var(--lime-d)}.fc3 .founder-role{color:var(--violet-d)}.fc4 .founder-role{color:var(--coral-d)}.fc5 .founder-role{color:var(--sky-dd)}
+.founder-card p{font-size:12.5px;color:var(--gray4);line-height:1.65}
+.founder-univ-pill{display:inline-flex;align-items:center;gap:5px;margin-top:1rem;background:var(--white);border-radius:50px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--gray4);border:1px solid var(--gray2)}
+
+/* PARTNER */
+#partner{background:var(--off)}
+.partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.partner-card{background:var(--white);border-radius:20px;padding:2.5rem;border:2px solid var(--gray2);transition:all .35s;text-align:center;cursor:default}
+.partner-card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(0,0,0,.1);border-color:var(--sky)}
+.partner-logo-wrap{width:90px;height:90px;border-radius:50%;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;font-size:3rem;border:3px solid var(--gray2);transition:border-color .3s}
+.partner-card:hover .partner-logo-wrap{border-color:var(--sky)}
+.partner-card h4{font-family:var(--font-h);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.partner-card p{font-size:13px;color:var(--gray4);line-height:1.65}
+.partner-since{display:inline-block;margin-top:1rem;background:rgba(6,182,212,.1);border-radius:50px;padding:5px 14px;font-family:var(--font-m);font-size:10px;font-weight:700;color:var(--sky-dd)}
+.partner-cta-wrap{text-align:center;margin-top:3.5rem}
+
+/* BERITA */
+#berita{background:var(--white)}
+.news-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem}
+.news-main{border-radius:22px;overflow:hidden;border:2px solid var(--gray2);cursor:pointer;transition:all .35s}
+.news-main:hover{box-shadow:0 20px 52px rgba(0,0,0,.12);transform:translateY(-4px);border-color:var(--sun)}
+.news-main-thumb{height:280px;background:linear-gradient(145deg,var(--navy),#2a0a4a);display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative}
+.news-main-badge{position:absolute;top:16px;left:16px;background:var(--sun);color:var(--navy);padding:6px 16px;border-radius:50px;font-family:var(--font-m);font-size:10px;font-weight:700;letter-spacing:1px}
+.news-main-body{padding:2rem}
+.news-main-body h2{font-family:var(--font-h);font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.625rem;line-height:1.35}
+.news-main-body p{font-size:13.5px;color:var(--gray4);line-height:1.75}
+.news-meta{display:flex;gap:1rem;margin-top:1rem;font-family:var(--font-m);font-size:10px;color:var(--gray3)}
+.news-list{display:flex;flex-direction:column;gap:.875rem}
+.news-item{display:flex;gap:.875rem;background:var(--off);border:1.5px solid var(--gray2);border-radius:14px;padding:1rem;cursor:pointer;transition:all .3s;align-items:flex-start}
+.news-item:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateX(5px);border-color:var(--sky)}
+.news-thumb{width:68px;height:68px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2rem;border:2px solid var(--gray2)}
+.news-item h4{font-size:12.5px;font-weight:700;color:var(--navy);line-height:1.45;margin-bottom:5px}
+.news-item span{font-family:var(--font-m);font-size:10px;color:var(--gray3)}
+
+/* KONTAK */
+#kontak{background:linear-gradient(160deg,var(--navy) 0%,#1a0533 100%);position:relative;overflow:hidden}
+#kontak::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 10% 80%,rgba(6,182,212,.08),transparent 50%),radial-gradient(ellipse at 90% 20%,rgba(255,107,107,.06),transparent 50%)}
+.kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;position:relative;z-index:1}
+.kontak-info h2{color:var(--white)}
+.kontak-info .sec-p{color:rgba(255,255,255,.6)}
+.kontak-links{display:flex;flex-direction:column;gap:.75rem;margin-top:2.5rem}
+.klink{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.25rem 1.5rem;text-decoration:none;transition:all .3s;cursor:pointer}
+.klink:hover{background:rgba(255,255,255,.12);transform:translateX(8px)}
+.klink-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.klink:nth-child(1) .klink-icon{background:rgba(255,217,61,.2)}
+.klink:nth-child(2) .klink-icon{background:rgba(6,182,212,.2)}
+.klink:nth-child(3) .klink-icon{background:rgba(132,204,22,.2)}
+.klink:nth-child(4) .klink-icon{background:rgba(168,85,247,.2)}
+.klink h4{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--white);margin-bottom:.15rem}
+.klink span{font-size:12px;color:rgba(255,255,255,.45)}
+.kontak-form-box{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:2.5rem}
+.form-title{font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:.375rem}
+.form-sub{font-size:13.5px;color:rgba(255,255,255,.45);margin-bottom:2rem}
+.fg{margin-bottom:1.25rem}
+.fg label{display:block;font-family:var(--font-m);font-size:10px;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.07);color:var(--white);font-family:var(--font-b);font-size:14px;outline:none;transition:all .25s}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.3)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(255,217,61,.5);background:rgba(255,255,255,.1)}
+.fg select option{background:var(--navy2);color:var(--white)}
+.fg textarea{resize:vertical;min-height:110px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-send{width:100%;padding:16px;border-radius:12px;border:none;font-family:var(--font-b);font-size:15px;font-weight:800;cursor:pointer;background:var(--sun);color:var(--navy);transition:all .3s;letter-spacing:.5px}
+.btn-send:hover{background:var(--sun-d);transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,217,61,.4)}
+
+/* NOTIF */
+#notif-toast{position:fixed;top:100px;right:-380px;background:var(--white);border-radius:16px;padding:1rem 1.25rem;box-shadow:0 12px 40px rgba(0,0,0,.16);border-left:5px solid var(--sky);z-index:9998;transition:right .45s cubic-bezier(.22,1,.36,1);max-width:300px;display:flex;align-items:center;gap:.875rem}
+#notif-toast.show{right:1.5rem}
+#notif-icon{font-size:1.75rem}
+#notif-title{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px}
+#notif-msg{font-size:12px;color:var(--gray4)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);border-radius:24px;max-width:520px;width:100%;padding:2.5rem;position:relative;animation:modalIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.88) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;border-radius:50%;background:var(--off);border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{background:var(--gray2);transform:rotate(90deg)}
+.modal-icon{font-size:3.5rem;display:block;text-align:center;margin-bottom:1rem}
+.modal-box h3{font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:.375rem}
+.modal-box>p{font-size:13.5px;color:var(--gray4);margin-bottom:1.75rem;line-height:1.65}
+.modal-box .fg label{color:var(--gray4)}
+.modal-box .fg input,.modal-box .fg select,.modal-box .fg textarea{background:var(--off);border:1.5px solid var(--gray2);color:var(--navy)}
+.modal-box .fg input::placeholder,.modal-box .fg textarea::placeholder{color:var(--gray3)}
+.modal-box .fg input:focus,.modal-box .fg select:focus,.modal-box .fg textarea:focus{border-color:var(--sky);background:rgba(6,182,212,.04)}
+.modal-box .btn-send{background:linear-gradient(135deg,var(--sky),var(--sky-d));color:var(--white)}
+.modal-box .btn-send:hover{box-shadow:0 8px 24px rgba(6,182,212,.4)}
+
+/* FLOAT */
+.float-group{position:fixed;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:.625rem;z-index:999}
+.float-btn{width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.25rem;transition:all .35s cubic-bezier(.34,1.56,.64,1);text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.float-btn:hover{transform:scale(1.15) translateY(-3px)}
+.fb-wa{background:#25D366;color:var(--white)}
+.fb-up{background:var(--navy);color:var(--sun);opacity:0;pointer-events:none;transition:opacity .3s,transform .35s}
+.fb-up.vis{opacity:1;pointer-events:auto}
+
+/* FOOTER */
+footer{background:var(--navy);padding:70px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-brand p{color:rgba(255,255,255,.4);font-size:13.5px;line-height:1.75;margin:1.125rem 0 1.5rem}
+.social-row{display:flex;gap:.5rem}
+.sc{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;transition:all .25s}
+.sc:hover{background:var(--sky);border-color:var(--sky);transform:translateY(-3px)}
+.footer-col h4{color:var(--white);font-family:var(--font-h);font-size:14px;font-weight:700;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid rgba(255,255,255,.06)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-links a{color:rgba(255,255,255,.4);font-size:13.5px;text-decoration:none;transition:all .22s;display:flex;align-items:center;gap:6px}
+.footer-links a:hover{color:var(--sun);padding-left:5px}
+.footer-links a::before{content:'→';color:var(--sun);opacity:0;transition:opacity .2s}
+.footer-links a:hover::before{opacity:1}
+.nl-form{display:flex;gap:6px;margin-top:1rem}
+.nl-form input{flex:1;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.1);color:var(--white);padding:10px 14px;border-radius:10px;font-size:13px;font-family:var(--font-b);outline:none;transition:all .25s}
+.nl-form input:focus{border-color:var(--sun)}
+.nl-form button{background:var(--sun);color:var(--navy);border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:800;transition:all .25s}
+.nl-form button:hover{background:var(--sun-d)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding:1.5rem 0}
+.footer-bottom p{color:rgba(255,255,255,.3);font-size:12.5px}
+.footer-bottom-links{display:flex;gap:1.5rem}
+.footer-bottom-links a{color:rgba(255,255,255,.3);font-size:12.5px;text-decoration:none;transition:color .2s}
+.footer-bottom-links a:hover{color:rgba(255,255,255,.7)}
+
+/* STATS ANIMATED BAR */
+.stat-bar-wrap{margin-top:1.5rem}
+.stat-bar-item{margin-bottom:1rem}
+.stat-bar-head{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--gray4);margin-bottom:.4rem}
+.stat-bar-track{height:8px;background:var(--gray2);border-radius:4px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.5s cubic-bezier(.22,1,.36,1)}
+
+/* QUIZ SECTION */
+#quiz{background:linear-gradient(145deg,rgba(6,182,212,.05),rgba(132,204,22,.05));padding:80px 0}
+.quiz-wrap{max-width:760px;margin:0 auto;background:var(--white);border-radius:28px;padding:3rem;border:2px solid var(--gray2);box-shadow:var(--shadow-lg)}
+.quiz-progress{height:6px;background:var(--gray2);border-radius:3px;margin-bottom:2.5rem;overflow:hidden}
+.quiz-prog-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--lime));border-radius:3px;transition:width .5s}
+.quiz-question{font-family:var(--font-h);font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:.625rem}
+.quiz-sub{font-size:14px;color:var(--gray4);margin-bottom:2rem}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem}
+.quiz-opt{background:var(--off);border:2px solid var(--gray2);border-radius:14px;padding:1rem 1.25rem;cursor:pointer;font-size:14px;font-weight:700;color:var(--navy);text-align:left;transition:all .25s;display:flex;align-items:center;gap:.75rem}
+.quiz-opt:hover{border-color:var(--sky);background:rgba(6,182,212,.05)}
+.quiz-opt.selected{border-color:var(--sky);background:rgba(6,182,212,.08);color:var(--sky-dd)}
+.quiz-opt.correct{border-color:var(--lime);background:rgba(132,204,22,.1);color:var(--lime-dd)}
+.quiz-opt.wrong{border-color:var(--coral);background:rgba(255,107,107,.1);color:var(--coral-dd)}
+.quiz-opt-num{width:28px;height:28px;border-radius:8px;background:var(--gray2);display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:11px;font-weight:700;flex-shrink:0}
+.quiz-opt.selected .quiz-opt-num{background:var(--sky);color:var(--white)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center}
+.quiz-counter{font-family:var(--font-m);font-size:11px;color:var(--gray3)}
+.quiz-result{text-align:center;padding:2rem 0}
+.quiz-result-score{font-family:var(--font-h);font-size:5rem;font-weight:700;color:var(--navy);line-height:1}
+.quiz-result-lbl{font-size:15px;color:var(--gray4);margin-bottom:2rem}
+
+/* CALCULATOR */
+#kalkulator{background:var(--off)}
+.calc-wrap{max-width:800px;margin:0 auto;background:var(--white);border-radius:28px;overflow:hidden;border:2px solid var(--gray2);box-shadow:var(--shadow)}
+.calc-head{background:var(--navy);padding:2rem;display:flex;align-items:center;gap:1rem}
+.calc-head h3{font-family:var(--font-h);font-size:1.3rem;font-weight:700;color:var(--white)}
+.calc-head-icon{font-size:2rem}
+.calc-body{padding:2.5rem}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.calc-fg label{display:block;font-family:var(--font-m);font-size:10px;font-weight:700;color:var(--gray4);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px}
+.calc-fg input,.calc-fg select{width:100%;padding:12px 16px;border-radius:12px;border:2px solid var(--gray2);background:var(--off);color:var(--navy);font-family:var(--font-b);font-size:15px;font-weight:700;outline:none;transition:border-color .25s}
+.calc-fg input:focus,.calc-fg select:focus{border-color:var(--sky)}
+.calc-fg input[type="range"]{padding:0;height:6px;accent-color:var(--sky)}
+.calc-result{background:linear-gradient(145deg,var(--navy),#1a0533);border-radius:16px;padding:2rem;margin-top:1.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.calc-res-item{text-align:center}
+.calc-res-val{font-family:var(--font-h);font-size:1.75rem;font-weight:700;display:block;line-height:1}
+.calc-res-item:nth-child(1) .calc-res-val{color:var(--sun)}
+.calc-res-item:nth-child(2) .calc-res-val{color:var(--sky)}
+.calc-res-item:nth-child(3) .calc-res-val{color:var(--lime)}
+.calc-res-lbl{font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:.375rem;display:block}
+
+/* FAQ */
+#faq{background:var(--white)}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
+.faq-item{border:2px solid var(--gray2);border-radius:16px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:var(--sky)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.375rem 1.5rem;cursor:pointer;gap:1rem}
+.faq-q h4{font-family:var(--font-h);font-size:15px;font-weight:700;color:var(--navy);line-height:1.35}
+.faq-arrow{width:30px;height:30px;border-radius:8px;background:var(--off);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:transform .3s,background .3s}
+.faq-item.open .faq-arrow{transform:rotate(45deg);background:var(--sky);color:var(--white)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1),padding .3s}
+.faq-a-inner{padding:0 1.5rem 1.25rem;font-size:14px;color:var(--gray4);line-height:1.75}
+
+/* TESTIMONIAL */
+#testimoni{background:var(--off)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{background:var(--white);border-radius:20px;padding:2rem;border:2px solid var(--gray2);transition:all .3s;cursor:default;position:relative}
+.testi-card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(0,0,0,.1)}
+.testi-quote{font-size:3rem;line-height:1;margin-bottom:.5rem}
+.tc1 .testi-quote{color:var(--sun)}.tc2 .testi-quote{color:var(--sky)}.tc3 .testi-quote{color:var(--lime)}
+.tc4 .testi-quote{color:var(--coral)}.tc5 .testi-quote{color:var(--violet)}.tc6 .testi-quote{color:var(--sun-d)}
+.testi-text{font-size:14px;color:var(--gray4);line-height:1.75;margin-bottom:1.5rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:.875rem;border-top:1.5px solid var(--gray2);padding-top:1.25rem}
+.testi-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:.9rem;font-weight:700;color:var(--white);flex-shrink:0}
+.tc1 .testi-av{background:linear-gradient(135deg,var(--sun),var(--sun-d))}.tc2 .testi-av{background:linear-gradient(135deg,var(--sky),var(--sky-d))}
+.tc3 .testi-av{background:linear-gradient(135deg,var(--lime-d),var(--lime-dd))}.tc4 .testi-av{background:linear-gradient(135deg,var(--coral),var(--coral-d))}
+.tc5 .testi-av{background:linear-gradient(135deg,var(--violet),var(--violet-d))}.tc6 .testi-av{background:linear-gradient(135deg,var(--sky-d),var(--lime-d))}
+.testi-name{font-family:var(--font-h);font-size:13.5px;font-weight:700;color:var(--navy)}
+.testi-sub{font-size:11.5px;color:var(--gray3);margin-top:2px}
+.testi-stars{display:flex;gap:2px;margin-top:3px}
+.testi-stars span{color:var(--sun);font-size:.8rem}
+
+/* ROADMAP */
+#roadmap{background:var(--navy)}
+.roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:1}
+.roadmap-grid::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--sun),var(--coral),var(--violet),var(--sky));z-index:0}
+.rm-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:1.75rem;text-align:center;transition:all .3s;position:relative;z-index:1}
+.rm-card:hover{background:rgba(255,255,255,.12);transform:translateY(-6px)}
+.rm-num{width:56px;height:56px;border-radius:50%;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:1.3rem;font-weight:700;border:3px solid var(--white)}
+.rm-card:nth-child(1) .rm-num{background:var(--sun);color:var(--navy)}
+.rm-card:nth-child(2) .rm-num{background:var(--coral);color:var(--white)}
+.rm-card:nth-child(3) .rm-num{background:var(--violet);color:var(--white)}
+.rm-card:nth-child(4) .rm-num{background:var(--sky);color:var(--white)}
+.rm-card h3{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--white);margin-bottom:.5rem}
+.rm-card p{font-size:12px;color:rgba(255,255,255,.55);line-height:1.65}
+.rm-year{font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr;padding-top:100px}
+  .hero-card{display:none}
+  .about-grid,.visi-grid,.kontak-grid,.news-grid{grid-template-columns:1fr}
+  .dampak-grid{grid-template-columns:repeat(2,1fr)}
+  .roadmap-grid::before{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-menu{display:none}
+  .hamburger{display:flex}
+  .nav-menu.open{display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:rgba(255,254,245,.98);padding:1.5rem 2rem;border-top:2px solid var(--sun);box-shadow:0 16px 40px rgba(0,0,0,.12);gap:.25rem}
+  .prog-grid,.roadmap-grid,.testi-grid{grid-template-columns:1fr}
+  .prog-card.featured{grid-column:span 1;grid-template-columns:1fr}
+  .prog-card.featured .prog-thumb{min-height:160px}
+  .founder-grid,.partner-grid{grid-template-columns:1fr 1fr}
+  .quiz-options,.calc-row,.fg-row{grid-template-columns:1fr}
+  section{padding:72px 0}
+}
+@media(max-width:480px){
+  .founder-grid,.partner-grid,.about-visual{grid-template-columns:1fr}
+  .acard:nth-child(1){grid-column:span 1}
+  .dampak-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="pbar"></div>
+
+<!-- PRELOADER -->
+<div id="pre">
+  <div class="pre-logo-wrap">
+    <div class="pre-hex">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" stroke="rgba(255,217,61,0.3)" stroke-width="2" fill="none"/>
+        <polygon points="50,15 82,32.5 82,67.5 50,85 18,67.5 18,32.5" stroke="rgba(6,182,212,0.3)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="pre-initials">SPM</div>
+  </div>
+  <div class="pre-pct"><span id="pct">0</span>%</div>
+  <div class="pre-bar"><div class="pre-bar-fill" id="barFill" style="width:0"></div></div>
+  <div class="pre-txt">Memuat SPM Foundation</div>
+</div>
+
+<!-- NOTIF TOAST -->
+<div id="notif-toast">
+  <span id="notif-icon">✅</span>
+  <div>
+    <div id="notif-title">Berhasil!</div>
+    <div id="notif-msg">Terima kasih!</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="brand">
+      <div class="brand-icon">SPM</div>
+      <div class="brand-text">
+        <strong>SPM Foundation</strong>
+        <em>Sahabat Pendidikan Maju</em>
+      </div>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#sejarah">Sejarah</a></li>
+      <li><a href="#visi">Visi & Misi</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#dampak">Dampak</a></li>
+      <li><a href="#founder">Founder</a></li>
+      <li><a href="#partner">Partnership</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-outline" onclick="openModal('mRelawan')">Bergabung</button>
+      <button class="btn-solid" onclick="scrollTo('#program')">Lihat Program →</button>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="blob blob4"></div>
+  </div>
+  <div class="hero-noise"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-pulse"></span>
+        <span class="eyebrow-text">Berbagi · Belajar · Bertumbuh 🌱</span>
+      </div>
+      <h1 class="hero-h1">
+        <div class="word"><div class="inner" id="hw1">Pelopor</div></div>
+        <br>
+        <div class="word"><div class="inner acc-sun" id="hw2">Kecemerlangan</div></div>
+        <br>
+        <div class="word"><div class="inner acc-sky" id="hw3">Pendidikan</div></div>
+        <br>
+        <div class="word"><div class="inner acc-lime" id="hw4">Indonesia</div></div>
+      </h1>
+      <p class="hero-desc" id="heroDesc">Komunitas Sahabat Pendidikan Maju Foundation — wadah pelajar & mahasiswa Indonesia untuk mengakses informasi beasiswa, sharing session, dan peluang pendidikan terbaik dalam & luar negeri sejak 2024.</p>
+      <div class="hero-btns" id="heroBtns">
+        <a href="#program" class="hbtn-primary">🎓 Jelajahi Program</a>
+        <a href="https://instagram.com/spm_foundation/" target="_blank" class="hbtn-secondary">📸 Ikuti Kami</a>
+      </div>
+      <div class="hero-social-row" id="heroSoc">
+        <span class="soc-lbl">Follow</span>
+        <a href="https://instagram.com/spm_foundation/" target="_blank" class="soc-btn" title="Instagram">📸</a>
+        <a href="#" class="soc-btn" title="TikTok">🎵</a>
+        <a href="mailto:fpmbicommunity@gmail.com" class="soc-btn" title="Email">✉️</a>
+        <a href="https://linktr.ee/spm_foundation1724" target="_blank" class="soc-btn" title="Linktree">🔗</a>
+      </div>
+    </div>
+    <div class="hero-card" id="heroCard">
+      <div class="hcard-head">
+        <span class="hcard-title">📊 Dashboard Komunitas</span>
+        <div class="live-badge"><span class="live-dot"></span>LIVE</div>
+      </div>
+      <div class="hcard-stats">
+        <div class="hstat"><span class="hstat-icon">👥</span><span class="hstat-val" data-c="31900">0</span><span class="hstat-lbl">Pengikut IG</span></div>
+        <div class="hstat"><span class="hstat-icon">📨</span><span class="hstat-val" data-c="1538">0</span><span class="hstat-lbl">Kiriman</span></div>
+        <div class="hstat"><span class="hstat-icon">🤝</span><span class="hstat-val" data-c="3">0</span><span class="hstat-lbl">Partnership</span></div>
+        <div class="hstat"><span class="hstat-icon">🎓</span><span class="hstat-val" data-c="6">0</span><span class="hstat-lbl">Founder</span></div>
+      </div>
+      <div class="hcard-chart">
+        <div class="chart-lbl">Pertumbuhan 2024</div>
+        <div class="chart-bars" id="chartBars"></div>
+      </div>
+      <div class="hcard-feed">
+        <div class="feed-item">
+          <div class="feed-ico" style="background:rgba(255,217,61,.2)">📢</div>
+          <div class="feed-txt">Info KIPK 2026 tersedia!</div>
+          <div class="feed-time">Baru</div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-ico" style="background:rgba(6,182,212,.2)">✅</div>
+          <div class="feed-txt">Sharing session LPDP selesai</div>
+          <div class="feed-time">2j lalu</div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-ico" style="background:rgba(132,204,22,.2)">🌟</div>
+          <div class="feed-txt">Partnership FPS Community resmi</div>
+          <div class="feed-time">Jan 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span class="scroll-word">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-strip">
+  <div class="ticker-scroll" id="ticker">
+    <span class="ticker-item">Info Beasiswa KIP Kuliah 2026</span>
+    <span class="ticker-item">Sharing Session LPDP Batch Baru</span>
+    <span class="ticker-item">31.900+ Pengikut Instagram @spm_foundation</span>
+    <span class="ticker-item">Partnership LDK Al-Mufid STAI Baturaja</span>
+    <span class="ticker-item">Pendaftaran Beasiswa Unggulan Dibuka</span>
+    <span class="ticker-item">SPM Foundation × FPS Community 2025</span>
+    <span class="ticker-item">Berbagi · Belajar · Bertumbuh</span>
+    <span class="ticker-item">Info Beasiswa KIP Kuliah 2026</span>
+    <span class="ticker-item">Sharing Session LPDP Batch Baru</span>
+    <span class="ticker-item">31.900+ Pengikut Instagram @spm_foundation</span>
+    <span class="ticker-item">Partnership LDK Al-Mufid STAI Baturaja</span>
+    <span class="ticker-item">Pendaftaran Beasiswa Unggulan Dibuka</span>
+    <span class="ticker-item">SPM Foundation × FPS Community 2025</span>
+    <span class="ticker-item">Berbagi · Belajar · Bertumbuh</span>
+  </div>
+</div>
+
+<!-- TENTANG -->
+<section id="tentang">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="rw">
+        <div class="about-visual">
+          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">🎓</span><span class="acard-name">Beasiswa & Info Edu</span><span class="acard-sub">Program Utama</span></div></div></div>
+          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">💬</span><span class="acard-name">Sharing Session</span><span class="acard-sub">Rutin</span></div></div></div>
+          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">🌐</span><span class="acard-name">Beasiswa Internasional</span><span class="acard-sub">LPDP & Luar Negeri</span></div></div></div>
+          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">🤝</span><span class="acard-name">Komunitas & Kolaborasi</span><span class="acard-sub">Partnership</span></div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-tag tag-sky rw">📚 Tentang SPM Foundation</div>
+        <h2 class="sec-h2 rw" data-d="1">Wadah Pelajar & Mahasiswa <em>Raih Pendidikan Terbaik</em></h2>
+        <p class="sec-p rw" data-d="2">Di era yang semakin kompetitif ini, akses terhadap pendidikan berkualitas menjadi faktor penting dalam membangun masa depan yang cerah. SPM Foundation hadir sebagai komunitas yang menyediakan informasi lengkap mengenai pendidikan dan berbagai peluang beasiswa, baik dalam negeri maupun luar negeri.</p>
+        <p class="sec-p rw" data-d="2" style="margin-top:1rem">Kami rutin mengadakan sharing session bersama penerima beasiswa, alumni, dan tokoh inspiratif untuk berbagi pengalaman, tips, dan strategi sukses meraih beasiswa impian.</p>
+        <div class="vm-grid rw" data-d="3">
+          <div class="vm-box v"><h4>🌟 Visi</h4><p>Pelopor Kecemerlangan Pendidikan Indonesia — memajukan pendidikan masyarakat Indonesia secara menyeluruh.</p></div>
+          <div class="vm-box m"><h4>🚀 Misi</h4><p>Menjembatani pelajar dengan informasi beasiswa, bimbingan akademik, dan jaringan kolaboratif yang kuat.</p></div>
+        </div>
+        <div class="count-strip rw" data-d="4">
+          <div class="cnt-box"><span class="cnt-num" data-c="31900">0</span><span class="cnt-lbl">Pengikut IG</span></div>
+          <div class="cnt-box"><span class="cnt-num" data-c="1538">0</span><span class="cnt-lbl">Kiriman</span></div>
+          <div class="cnt-box"><span class="cnt-num" data-c="2024">0</span><span class="cnt-lbl">Berdiri Tahun</span></div>
+        </div>
+        <div class="stat-bar-wrap rw" data-d="5">
+          <div class="stat-bar-item">
+            <div class="stat-bar-head"><span>Beasiswa KIP Kuliah</span><span>92%</span></div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" data-w="92" style="background:var(--sky)"></div></div>
+          </div>
+          <div class="stat-bar-item">
+            <div class="stat-bar-head"><span>Beasiswa LPDP</span><span>78%</span></div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" data-w="78" style="background:var(--sun-d)"></div></div>
+          </div>
+          <div class="stat-bar-item">
+            <div class="stat-bar-head"><span>Beasiswa Internasional</span><span>65%</span></div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" data-w="65" style="background:var(--lime-d)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEJARAH -->
+<section id="sejarah">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-sun rw">📜 Sejarah Kami</div>
+      <h2 class="sec-h2 rw" data-d="1">Perjalanan <em>SPM Foundation</em></h2>
+      <p class="sec-p rw" data-d="2">Dari FPMBI hingga SPM Foundation — transformasi komunitas yang terus berkembang demi pendidikan Indonesia yang lebih baik.</p>
+    </div>
+    <div class="timeline-wrap">
+      <div class="timeline-spine"><div class="tl-spine-fill" id="tlFill" style="height:0"></div></div>
+      <div class="tl-node rw">
+        <div class="tl-emp"></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-crd">
+          <div class="tl-era">Awal 2024</div>
+          <div class="tl-title">FPMBI Berdiri</div>
+          <p class="tl-body">Berawal dari Forum Persatuan Mahasiswa Bidikmisi Indonesia (FPMBI), komunitas ini lahir dengan semangat persatuan mahasiswa penerima beasiswa Bidikmisi/KIPK di seluruh Indonesia. Logo awal mencerminkan semangat gotong royong dan akses pendidikan.</p>
+          <span class="tl-pill">Fase Pendiri</span>
+        </div>
+      </div>
+      <div class="tl-node rw" data-d="1">
+        <div class="tl-crd" style="text-align:right">
+          <div class="tl-era">Juli 2024</div>
+          <div class="tl-title">SPM Community</div>
+          <p class="tl-body">Pada Juli 2024, komunitas resmi berganti nama menjadi SPM Community — Komunitas Sahabat Pendidikan Maju. Perluasan misi untuk mendukung akses pendidikan yang lebih luas, tidak hanya bagi penerima Bidikmisi namun seluruh pelajar Indonesia.</p>
+          <span class="tl-pill">Transformasi</span>
+        </div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-emp"></div>
+      </div>
+      <div class="tl-node rw" data-d="2">
+        <div class="tl-emp"></div>
+        <div class="tl-mid"><div class="tl-dot"></div></div>
+        <div class="tl-crd">
+          <div class="tl-era">November 2024</div>
+          <div class="tl-title">SPM Foundation</div>
+          <p class="tl-body">November 2024 menjadi tonggak penting — komunitas berkembang menjadi SPM Foundation dengan nama, logo baru, dan berbagai partnership strategis. Bergabung dengan Indonesian Intellectuals, LDK Al-Mufid, dan Forum Pemuda Sosial ID Community.</p>
+          <span class="tl-pill">Berkembang Hingga Kini</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISI MISI -->
+<section id="visi">
+  <div class="wrap">
+    <div class="sec-hdr center" style="position:relative;z-index:1">
+      <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">🎯 Visi & Misi</div>
+      <h2 class="sec-h2 rw" data-d="1" style="color:var(--white)">Landasan <span style="color:var(--sun)">Gerak Kami</span></h2>
+      <p class="sec-p rw" data-d="2" style="color:rgba(255,255,255,.6);margin:0 auto">Setiap langkah SPM Foundation didasari visi yang jelas dan misi terukur untuk kemajuan pendidikan Indonesia yang merata dan berkelanjutan.</p>
+    </div>
+    <div class="visi-grid">
+      <div class="visi-box rw">
+        <div class="visi-box-head">
+          <div class="visi-icon sun">🌟</div>
+          <h3>Visi Kami</h3>
+        </div>
+        <p>Sahabat Pendidikan Maju Foundation adalah komunitas yang bertujuan untuk memajukan pendidikan di masyarakat Indonesia dengan tema berdirinya yaitu "Pelopor Kecemerlangan Pendidikan Indonesia".</p>
+        <p style="margin-top:1rem;color:rgba(255,255,255,.65)">Tujuan utama mencakup meningkatkan aksesibilitas pendidikan, menyebarkan informasi terkini, dan mendukung perkembangan siswa dan mahasiswa dalam mencapai potensi penuh mereka.</p>
+        <div class="visi-theme-badge">✨ "Pelopor Kecemerlangan Pendidikan Indonesia"</div>
+      </div>
+      <div class="rw" data-d="1">
+        <h3 style="font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:1.5rem">🚀 Misi Kami</h3>
+        <div class="misi-list">
+          <div class="misi-row"><div class="misi-num-badge mn1">1</div><div><h4>Meningkatkan Aksesibilitas Pendidikan</h4><p>Memastikan setiap individu, tanpa memandang latar belakang ekonomi, memiliki akses yang sama terhadap pendidikan berkualitas.</p></div></div>
+          <div class="misi-row"><div class="misi-num-badge mn2">2</div><div><h4>Menyediakan Informasi Terkini</h4><p>Menyajikan informasi terbaru dan relevan mengenai perkembangan dunia pendidikan kepada masyarakat Indonesia.</p></div></div>
+          <div class="misi-row"><div class="misi-num-badge mn3">3</div><div><h4>Mendukung Perkembangan Siswa & Mahasiswa</h4><p>Memberikan dukungan dan sumber daya melalui program pendidikan, bimbingan, dan pelatihan terstruktur.</p></div></div>
+          <div class="misi-row"><div class="misi-num-badge mn4">4</div><div><h4>Memperkuat Kolaborasi & Kemitraan</h4><p>Membangun kemitraan kuat dengan pemerintah, lembaga pendidikan, NGO, dan sektor swasta.</p></div></div>
+          <div class="misi-row"><div class="misi-num-badge mn5">5</div><div><h4>Membangun Kesadaran Pendidikan</h4><p>Menyebarkan pentingnya pendidikan sebagai fondasi pembangunan sosial, ekonomi, dan budaya yang berkelanjutan.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-lime rw">🎓 Program Unggulan</div>
+      <h2 class="sec-h2 rw" data-d="1">Program yang <em>Kami Jalankan</em></h2>
+      <p class="sec-p rw" data-d="2">SPM Foundation menjalankan berbagai program untuk mendukung akses pendidikan bagi pelajar dan mahasiswa Indonesia dari Sabang sampai Merauke.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card featured rw" onclick="openProgModal(0)">
+        <div class="prog-thumb">
+          🏆
+          <div class="prog-thumb-sub">Program Unggulan #1</div>
+          <div class="prog-badge">⭐ UTAMA</div>
+        </div>
+        <div class="prog-body">
+          <h3>Pembinaan Pejuang KIP Kuliah</h3>
+          <p>Program bimbingan komprehensif bagi calon mahasiswa baru dalam memahami proses pendaftaran, seleksi, dan strategi lolos beasiswa KIP Kuliah. Mencakup pendampingan pemilihan jurusan, pelatihan esai, dan mentoring dengan penerima KIPK sebelumnya.</p>
+          <div class="prog-tags">
+            <span class="prog-tag">📋 Pendaftaran & Seleksi</span>
+            <span class="prog-tag">✍️ Pelatihan Esai</span>
+            <span class="prog-tag">👤 Mentoring 1-on-1</span>
+            <span class="prog-tag">🏫 Pemilihan Jurusan</span>
+          </div>
+          <a href="#" class="prog-link-btn" onclick="openProgModal(0);return false">Lihat Detail Program →</a>
+        </div>
+      </div>
+      <div class="prog-card rw" data-d="1" onclick="openProgModal(1)">
+        <div class="prog-thumb">💬<div class="prog-badge">Rutin</div></div>
+        <div class="prog-body">
+          <h3>Sharing Session</h3>
+          <p>Sesi berbagi rutin bersama penerima beasiswa, alumni, dan tokoh inspiratif. Peserta mendapat wawasan, tips seleksi, dan motivasi perjalanan akademik mereka.</p>
+          <div class="prog-tags"><span class="prog-tag">🎙️ Narasumber</span><span class="prog-tag">🎓 Alumni</span></div>
+          <a href="#" class="prog-link-btn" onclick="openProgModal(1);return false">Lihat Detail →</a>
+        </div>
+      </div>
+      <div class="prog-card rw" data-d="2" onclick="openProgModal(2)">
+        <div class="prog-thumb">📚<div class="prog-badge">Aktif</div></div>
+        <div class="prog-body">
+          <h3>Info Beasiswa Lengkap</h3>
+          <p>Informasi beasiswa dalam & luar negeri: KIP Kuliah, LPDP, Beasiswa Unggulan, dan internasional — lengkap dengan syarat, timeline, dan strategi terbaik.</p>
+          <div class="prog-tags"><span class="prog-tag">🇮🇩 Dalam Negeri</span><span class="prog-tag">🌏 Internasional</span></div>
+          <a href="#" class="prog-link-btn" onclick="openProgModal(2);return false">Lihat Detail →</a>
+        </div>
+      </div>
+      <div class="prog-card rw" data-d="3" onclick="openProgModal(3)">
+        <div class="prog-thumb">🗺️<div class="prog-badge">Baru</div></div>
+        <div class="prog-body">
+          <h3>Panduan Jurusan & Kampus</h3>
+          <p>Membantu pelajar memilih jurusan dan universitas yang sesuai, memahami seleksi masuk PTN/PTS, serta peluang karir setelah lulus.</p>
+          <div class="prog-tags"><span class="prog-tag">🏛️ PTN & PTS</span><span class="prog-tag">💼 Karir</span></div>
+          <a href="#" class="prog-link-btn" onclick="openProgModal(3);return false">Lihat Detail →</a>
+        </div>
+      </div>
+      <div class="prog-card rw" data-d="4" onclick="openProgModal(4)">
+        <div class="prog-thumb">🌐<div class="prog-badge">Eksklusif</div></div>
+        <div class="prog-body">
+          <h3>Jaringan Beasiswa Internasional</h3>
+          <p>Kerja sama dengan lembaga pemberi beasiswa dalam & luar negeri untuk memperluas akses, pelatihan eksklusif, dan jaringan mahasiswa penerima.</p>
+          <div class="prog-tags"><span class="prog-tag">🤝 Lembaga Mitra</span><span class="prog-tag">🌍 Global</span></div>
+          <a href="#" class="prog-link-btn" onclick="openProgModal(4);return false">Lihat Detail →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAMPAK -->
+<section id="dampak">
+  <div class="wrap">
+    <div class="dampak-panel">
+      <div class="dampak-title">
+        <h2>Dampak Nyata SPM Foundation 📊</h2>
+        <p>Angka yang berbicara tentang komunitas kami — dari 2024 hingga kini</p>
+      </div>
+      <div class="dampak-grid">
+        <div class="dk-card rw"><span class="dk-icon">👥</span><span class="dk-val" data-c="31900">0</span><span class="dk-lbl">Pengikut Instagram</span></div>
+        <div class="dk-card rw" data-d="1"><span class="dk-icon">📨</span><span class="dk-val" data-c="1538">0</span><span class="dk-lbl">Total Kiriman</span></div>
+        <div class="dk-card rw" data-d="2"><span class="dk-icon">🤝</span><span class="dk-val" data-c="3">0</span><span class="dk-lbl">Partnership Aktif</span></div>
+        <div class="dk-card rw" data-d="3"><span class="dk-icon">🎓</span><span class="dk-val" data-c="6">0</span><span class="dk-lbl">Founder</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" style="padding:80px 0">
+  <div class="wrap">
+    <div class="sec-hdr center" style="position:relative;z-index:1">
+      <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">🗓️ Roadmap</div>
+      <h2 class="sec-h2 rw" data-d="1" style="color:var(--white)">Rencana & <span style="color:var(--sun)">Target Kami</span></h2>
+      <p class="sec-p rw" data-d="2" style="color:rgba(255,255,255,.55);margin:0 auto">Langkah strategis SPM Foundation untuk terus berkembang dan memberikan dampak lebih besar bagi pendidikan Indonesia.</p>
+    </div>
+    <div class="roadmap-grid" style="margin-top:3rem">
+      <div class="rm-card rw">
+        <div class="rm-year">2024</div>
+        <div class="rm-num">1</div>
+        <h3>Fondasi</h3>
+        <p>Membangun komunitas FPMBI, transformasi ke SPM Community lalu SPM Foundation. Menjalin partnership pertama.</p>
+      </div>
+      <div class="rm-card rw" data-d="1">
+        <div class="rm-year">2026</div>
+        <div class="rm-num">2</div>
+        <h3>Ekspansi</h3>
+        <p>Memperluas jangkauan ke seluruh Indonesia, menambah program beasiswa, dan meningkatkan jumlah partnership strategis.</p>
+      </div>
+      <div class="rm-card rw" data-d="2">
+        <div class="rm-year">2026</div>
+        <div class="rm-num">3</div>
+        <h3>Inovasi</h3>
+        <p>Meluncurkan platform digital terpadu, aplikasi mobile, dan program mentoring online untuk seluruh Indonesia.</p>
+      </div>
+      <div class="rm-card rw" data-d="3">
+        <div class="rm-year">2027+</div>
+        <div class="rm-num">4</div>
+        <h3>Dampak Global</h3>
+        <p>Menjalin kerja sama internasional, membuka peluang beasiswa luar negeri eksklusif bagi anggota SPM Foundation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimoni">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-sun rw">💬 Testimoni</div>
+      <h2 class="sec-h2 rw" data-d="1">Kata Mereka tentang <em>SPM Foundation</em></h2>
+      <p class="sec-p rw" data-d="2">Pengalaman nyata anggota komunitas yang merasakan manfaat program dan informasi dari SPM Foundation.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card tc1 rw">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Berkat info dari SPM Foundation, saya berhasil lolos seleksi KIP Kuliah 2024. Panduan langkah demi langkah yang diberikan sangat membantu saya yang berasal dari keluarga sederhana.</p>
+        <div class="testi-author">
+          <div class="testi-av">AR</div>
+          <div><div class="testi-name">Ahmad Rifqi</div><div class="testi-sub">Mahasiswa UGM, Penerima KIP Kuliah</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+        </div>
+      </div>
+      <div class="testi-card tc2 rw" data-d="1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Sharing session LPDP yang diselenggarakan SPM Foundation memberikan insight luar biasa. Narasumbernya adalah penerima LPDP aktif yang berbagi strategi nyata, bukan teori.</p>
+        <div class="testi-author">
+          <div class="testi-av">NF</div>
+          <div><div class="testi-name">Nurhaliza Fitri</div><div class="testi-sub">Mahasiswi UNAIR, Calon Awardee LPDP</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+        </div>
+      </div>
+      <div class="testi-card tc3 rw" data-d="2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Komunitas ini benar-benar membantu saya memilih jurusan yang tepat. Panduan dan diskusi yang ada membuka wawasan saya tentang berbagai pilihan karir yang tersedia setelah lulus.</p>
+        <div class="testi-author">
+          <div class="testi-av">BP</div>
+          <div><div class="testi-name">Bima Pratama</div><div class="testi-sub">Siswa SMAN 1 Jakarta</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+        </div>
+      </div>
+      <div class="testi-card tc4 rw">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Informasi beasiswa internasional yang dibagikan sangat akurat dan up-to-date. Saya berhasil menemukan beasiswa dari negara yang bahkan belum pernah saya dengar sebelumnya!</p>
+        <div class="testi-author">
+          <div class="testi-av">RS</div>
+          <div><div class="testi-name">Rania Safitri</div><div class="testi-sub">Mahasiswi UI, Peraih Beasiswa Turki</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+        </div>
+      </div>
+      <div class="testi-card tc5 rw" data-d="1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Mentoring 1-on-1 dengan kakak penerima KIPK sangat membantu. Saya bisa bertanya hal-hal spesifik yang tidak bisa saya temukan di internet. Hasilnya saya lulus seleksi!</p>
+        <div class="testi-author">
+          <div class="testi-av">DW</div>
+          <div><div class="testi-name">Dika Wulandari</div><div class="testi-sub">Mahasiswi UNDIP, Penerima KIPK 2024</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+        </div>
+      </div>
+      <div class="testi-card tc6 rw" data-d="2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">SPM Foundation bukan sekadar komunitas biasa. Ini adalah keluarga yang peduli dengan masa depan pendidikan kita. Sangat merekomendasikan kepada semua pelajar Indonesia!</p>
+        <div class="testi-author">
+          <div class="testi-av">MZ</div>
+          <div><div class="testi-name">Muhammad Zaki</div><div class="testi-sub">Mahasiswa ITS Surabaya</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-violet rw">🧠 Uji Pengetahuan</div>
+      <h2 class="sec-h2 rw" data-d="1">Seberapa Paham Kamu tentang <em>Beasiswa</em>?</h2>
+      <p class="sec-p rw" data-d="2">Jawab pertanyaan berikut dan cari tahu seberapa siap kamu mendaftar beasiswa impian!</p>
+    </div>
+    <div class="quiz-wrap rw">
+      <div class="quiz-progress"><div class="quiz-prog-fill" id="quizProg" style="width:0"></div></div>
+      <div id="quizContent">
+        <div class="quiz-question" id="quizQ">Pertanyaan akan muncul di sini</div>
+        <div class="quiz-sub" id="quizSub">Pilih salah satu jawaban yang paling tepat</div>
+        <div class="quiz-options" id="quizOpts"></div>
+        <div class="quiz-nav">
+          <span class="quiz-counter" id="quizCtr">1 / 5</span>
+          <button class="btn-solid" id="quizNext" onclick="nextQ()" style="display:none;padding:10px 24px">Lanjut →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KALKULATOR -->
+<section id="kalkulator">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-sky rw">🧮 Kalkulator</div>
+      <h2 class="sec-h2 rw" data-d="1">Kalkulator <em>Peluang Beasiswa</em></h2>
+      <p class="sec-p rw" data-d="2">Estimasikan peluang kamu mendapatkan beasiswa berdasarkan profil akademik dan kondisimu.</p>
+    </div>
+    <div class="calc-wrap rw">
+      <div class="calc-head">
+        <span class="calc-head-icon">🎯</span>
+        <h3>Kalkulator Peluang Beasiswa KIPK</h3>
+      </div>
+      <div class="calc-body">
+        <div class="calc-row">
+          <div class="calc-fg">
+            <label>Nilai Rata-rata Rapor (0-100)</label>
+            <input type="number" id="cNilai" min="60" max="100" value="85" oninput="calcUpdate()">
+          </div>
+          <div class="calc-fg">
+            <label>Penghasilan Orang Tua (juta/bulan)</label>
+            <input type="number" id="cPenghasilan" min="0" max="20" value="3" oninput="calcUpdate()">
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="calc-fg">
+            <label>Status Sosial</label>
+            <select id="cStatus" onchange="calcUpdate()">
+              <option value="3">Tidak Mampu (KKS/PKH)</option>
+              <option value="2" selected>Menengah Bawah</option>
+              <option value="1">Menengah</option>
+            </select>
+          </div>
+          <div class="calc-fg">
+            <label>Prestasi Akademik</label>
+            <select id="cPrestasi" onchange="calcUpdate()">
+              <option value="3">Juara Nasional / Olimpiade</option>
+              <option value="2" selected>Juara Sekolah / Kota</option>
+              <option value="1">Tidak Ada Prestasi Khusus</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="calc-res-item">
+            <span class="calc-res-val" id="cResPerluang">0%</span>
+            <span class="calc-res-lbl">Peluang KIPK</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-val" id="cResLPDP">0%</span>
+            <span class="calc-res-lbl">Peluang LPDP*</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-val" id="cResSkor">0</span>
+            <span class="calc-res-lbl">Skor Profil</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--gray3);text-align:center;margin-top:1rem">* Estimasi kasar berdasarkan faktor umum. Hasil aktual bergantung pada kebijakan resmi penyelenggara beasiswa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-coral rw">❓ FAQ</div>
+      <h2 class="sec-h2 rw" data-d="1">Pertanyaan yang <em>Sering Ditanya</em></h2>
+      <p class="sec-p rw" data-d="2">Temukan jawaban atas pertanyaan umum seputar SPM Foundation dan program beasiswa yang kami informasikan.</p>
+    </div>
+    <div class="faq-list rw">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Apa itu SPM Foundation dan bagaimana cara bergabung?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SPM Foundation (Sahabat Pendidikan Maju Foundation) adalah komunitas pendidikan yang berdiri sejak 2024, berawal dari FPMBI. Untuk bergabung, kamu bisa mengikuti akun Instagram @spm_foundation atau menghubungi kami melalui email fpmbicommunity@gmail.com. Keanggotaan komunitas ini gratis dan terbuka untuk semua pelajar dan mahasiswa Indonesia.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Apakah SPM Foundation membantu dalam proses pendaftaran KIP Kuliah?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Ya! Program utama kami adalah Pembinaan Pejuang KIP Kuliah. Kami menyediakan panduan lengkap pendaftaran, pelatihan penyusunan esai, mentoring 1-on-1 dengan penerima KIPK aktif, dan konsultasi pemilihan jurusan. Semua program ini dirancang untuk memaksimalkan peluangmu lolos seleksi.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Jenis beasiswa apa saja yang diinformasikan oleh SPM Foundation?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Kami menginformasikan berbagai jenis beasiswa, mulai dari KIP Kuliah (KIPK), LPDP dalam dan luar negeri, Beasiswa Unggulan Kemendikbud, Beasiswa Bidikmisi, hingga beasiswa internasional dari berbagai negara seperti Turki (YTB), DAAD Jerman, Chevening UK, dan masih banyak lagi. Semua informasi dilengkapi syarat, timeline, dan tips strategi pendaftaran.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Seberapa sering SPM Foundation mengadakan sharing session?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SPM Foundation rutin mengadakan sharing session setiap bulan. Narasumber yang dihadirkan adalah penerima beasiswa aktif, alumni dari berbagai universitas terkemuka, serta tokoh inspiratif di bidang pendidikan. Informasi jadwal terbaru selalu diupdate di Instagram @spm_foundation.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Siapa saja founder SPM Foundation?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SPM Foundation didirikan oleh 6 mahasiswa berprestasi: Rustanto (Universitas Negeri Semarang, 2023), Safinaturrahmah (Universitas Mataram, 2021), Moh. Ulil Absor (Universitas Trisakti, 2023), Safta Arwandi C.Ps. (UIN Raden Fatah, 2023), Maulana Hanif Zulkhoirurroziqin (Universitas Negeri Semarang, 2023), dan Midun Okta Apandi (STAI Baturaja, 2022).</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Bagaimana cara mengajukan partnership dengan SPM Foundation?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Untuk mengajukan partnership, kamu bisa mengisi formulir di halaman kontak kami, atau mengirim email langsung ke fpmbicommunity@gmail.com dengan subject "Proposal Partnership". Tim kami akan merespons dalam 1×24 jam. Saat ini kami telah bermitra dengan Indonesian Intellectuals, LDK Al-Mufid STAI Baturaja, dan Forum Pemuda Sosial ID Community.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-violet rw">👥 Biodata Founder</div>
+      <h2 class="sec-h2 rw" data-d="1">Enam <em>Pendiri</em> SPM Foundation</h2>
+      <p class="sec-p rw" data-d="2">Mereka yang memulai perjalanan ini — enam mahasiswa dengan visi yang sama untuk memajukan pendidikan Indonesia.</p>
+    </div>
+    <div class="founder-intro-box rw">
+      <p>SPM Foundation didirikan pada tahun 2024 oleh enam founder yang memiliki visi yang sama dalam mendukung akses pendidikan bagi pelajar dan mahasiswa. Berawal dari FPMBI, berkembang menjadi SPM Community pada Juli 2024, lalu menjadi SPM Foundation pada November 2024. Dengan semangat kolaborasi, SPM Foundation terus berkembang dan menjalin berbagai partnership.</p>
+    </div>
+    <div class="founder-grid">
+      <div class="founder-card fc0 rw">
+        <div class="founder-avatar">R</div>
+        <h4>Rustanto</h4>
+        <div class="founder-role">Founder 1</div>
+        <p>Mahasiswa aktif dengan semangat tinggi dalam membangun ekosistem pendidikan yang lebih merata di seluruh Indonesia.</p>
+        <div class="founder-univ-pill">🏛️ Universitas Negeri Semarang · 2023</div>
+      </div>
+      <div class="founder-card fc1 rw" data-d="1">
+        <div class="founder-avatar">S</div>
+        <h4>Safinaturrahmah</h4>
+        <div class="founder-role">Founder 2</div>
+        <p>Mahasiswi berprestasi yang berkomitmen membantu sesama mendapatkan akses beasiswa dan informasi pendidikan terbaik.</p>
+        <div class="founder-univ-pill">🏛️ Universitas Mataram · 2021</div>
+      </div>
+      <div class="founder-card fc2 rw" data-d="2">
+        <div class="founder-avatar">MA</div>
+        <h4>Moh. Ulil Absor</h4>
+        <div class="founder-role">Founder 3</div>
+        <p>Visioner muda yang mendorong kolaborasi antarmahasiswa untuk kemajuan pendidikan nasional dan pemerataan akses.</p>
+        <div class="founder-univ-pill">🏛️ Universitas Trisakti · 2023</div>
+      </div>
+      <div class="founder-card fc3 rw" data-d="3">
+        <div class="founder-avatar">SA</div>
+        <h4>Safta Arwandi, C.Ps.</h4>
+        <div class="founder-role">Founder 4</div>
+        <p>Psikolog muda yang memastikan program komunitas berdampak optimal bagi perkembangan psikologis dan akademik anggota.</p>
+        <div class="founder-univ-pill">🏛️ UIN Raden Fatah · 2023</div>
+      </div>
+      <div class="founder-card fc4 rw" data-d="1">
+        <div class="founder-avatar">MH</div>
+        <h4>Maulana Hanif Z.</h4>
+        <div class="founder-role">Founder 5</div>
+        <p>Aktivis pendidikan yang aktif mendorong pemerataan informasi beasiswa ke seluruh penjuru Indonesia dari Sabang sampai Merauke.</p>
+        <div class="founder-univ-pill">🏛️ Universitas Negeri Semarang · 2023</div>
+      </div>
+      <div class="founder-card fc5 rw" data-d="2">
+        <div class="founder-avatar">MO</div>
+        <h4>Midun Okta Apandi</h4>
+        <div class="founder-role">Founder 6</div>
+        <p>Penggerak komunitas yang membangun jaringan solidaritas dan kekeluargaan antar mahasiswa penerima beasiswa seluruh Indonesia.</p>
+        <div class="founder-univ-pill">🏛️ STAI Baturaja · 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP -->
+<section id="partner">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-sky rw">🤝 Partnership</div>
+      <h2 class="sec-h2 rw" data-d="1">Mitra <em>Strategis</em> Kami</h2>
+      <p class="sec-p rw" data-d="2">SPM Foundation menjalin kemitraan dengan berbagai organisasi untuk memperluas dampak dan membuka peluang lebih luas bagi anggota komunitas.</p>
+    </div>
+    <div class="partner-grid">
+      <div class="partner-card rw">
+        <div class="partner-logo-wrap">🦅</div>
+        <h4>Indonesian Intellectuals</h4>
+        <p>Komunitas intelektual Indonesia yang berkomitmen pada pengembangan ilmu pengetahuan dan peningkatan kapasitas generasi muda bangsa.</p>
+        <div class="partner-since">📅 Partnership sejak Februari 2024</div>
+      </div>
+      <div class="partner-card rw" data-d="1">
+        <div class="partner-logo-wrap">🕌</div>
+        <h4>LDK Al-Mufid STAI Baturaja</h4>
+        <p>Lembaga Dakwah Kampus Al-Mufid STAI Baturaja — organisasi mahasiswa yang aktif dalam pengembangan karakter dan prestasi akademik.</p>
+        <div class="partner-since">📅 Partnership sejak Januari 2025</div>
+      </div>
+      <div class="partner-card rw" data-d="2">
+        <div class="partner-logo-wrap">🌟</div>
+        <h4>Forum Pemuda Sosial ID Community</h4>
+        <p>Komunitas pemuda Indonesia yang bergerak di bidang sosial dan pemberdayaan masyarakat untuk Indonesia yang lebih baik dan sejahtera.</p>
+        <div class="partner-since">📅 Partnership sejak Januari 2025</div>
+      </div>
+    </div>
+    <div class="partner-cta-wrap rw">
+      <p style="color:var(--gray4);margin-bottom:1.5rem;font-size:15px">Tertarik bermitra dengan SPM Foundation?</p>
+      <button class="btn-solid" onclick="openModal('mPartner')" style="display:inline-flex;align-items:center;gap:.5rem">📩 Ajukan Partnership</button>
+    </div>
+  </div>
+</section>
+
+<!-- BERITA -->
+<section id="berita">
+  <div class="wrap">
+    <div class="sec-hdr" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem">
+      <div>
+        <div class="sec-tag tag-sky rw">📰 Berita & Kegiatan</div>
+        <h2 class="sec-h2 rw" data-d="1">Update <em>Terkini</em></h2>
+      </div>
+      <button class="btn-solid rw" onclick="toast('Semua Berita','Fitur ini segera hadir! Pantau Instagram kami.')">Lihat Semua →</button>
+    </div>
+    <div class="news-grid">
+      <div class="news-main rw" onclick="toast('📰 Berita','Halaman detail berita segera hadir!')">
+        <div class="news-main-thumb">📢<div class="news-main-badge">TERBARU</div></div>
+        <div class="news-main-body">
+          <h2>Info Lengkap KIP Kuliah 2026: Syarat, Timeline & Tips Lolos dari SPM Foundation</h2>
+          <p>SPM Foundation merangkum panduan lengkap KIP Kuliah 2026 — dari persyaratan, jadwal pendaftaran, hingga strategi ampuh agar lolos seleksi. Sharing session eksklusif bersama penerima KIPK aktif juga tersedia untuk anggota komunitas yang ingin bertanya langsung...</p>
+          <div class="news-meta"><span>📅 Januari 2026</span><span>✍️ Tim SPM Foundation</span><span>📸 @spm_foundation</span></div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item rw" onclick="toast('📰','Halaman berita segera hadir!')">
+          <div class="news-thumb" style="background:rgba(255,217,61,.15)">🏆</div>
+          <div><h4>SPM Foundation Resmi Jalin Partnership dengan FPS Community Januari 2025</h4><span>📅 Jan 2025</span></div>
+        </div>
+        <div class="news-item rw" data-d="1" onclick="toast('📰','Halaman berita segera hadir!')">
+          <div class="news-thumb" style="background:rgba(6,182,212,.1)">🎓</div>
+          <div><h4>Sharing Session LPDP: Strategi Lolos dari Alumni Penerima Beasiswa Luar Negeri</h4><span>📅 Des 2024</span></div>
+        </div>
+        <div class="news-item rw" data-d="2" onclick="toast('📰','Halaman berita segera hadir!')">
+          <div class="news-thumb" style="background:rgba(132,204,22,.1)">🌿</div>
+          <div><h4>Komunitas SPM Resmi Berganti Nama & Logo Jadi SPM Foundation November 2024</h4><span>📅 Nov 2024</span></div>
+        </div>
+        <div class="news-item rw" data-d="3" onclick="toast('📰','Halaman berita segera hadir!')">
+          <div class="news-thumb" style="background:rgba(168,85,247,.1)">🤝</div>
+          <div><h4>Indonesian Intellectuals Resmi Jadi Partner Pertama SPM Foundation Feb 2024</h4><span>📅 Feb 2024</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="wrap">
+    <div class="kontak-grid">
+      <div class="rw">
+        <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">📬 Kontak</div>
+        <h2 class="sec-h2" style="color:var(--white);margin-top:.75rem">Mari <span style="color:var(--sky)">Terhubung</span> Bersama</h2>
+        <p class="sec-p" style="color:rgba(255,255,255,.6)">Punya pertanyaan soal beasiswa, ingin berkolaborasi, atau bergabung sebagai anggota komunitas? Kami siap membantu!</p>
+        <div class="kontak-links">
+          <a href="https://instagram.com/spm_foundation/" target="_blank" class="klink">
+            <div class="klink-icon">📸</div>
+            <div><h4>Instagram</h4><span>@spm_foundation · 31.900+ Pengikut</span></div>
+          </a>
+          <a href="#" class="klink">
+            <div class="klink-icon">🎵</div>
+            <div><h4>TikTok</h4><span>@spm_foundation</span></div>
+          </a>
+          <a href="mailto:fpmbicommunity@gmail.com" class="klink">
+            <div class="klink-icon">✉️</div>
+            <div><h4>Email</h4><span>fpmbicommunity@gmail.com</span></div>
+          </a>
+          <a href="https://linktr.ee/spm_foundation1724" target="_blank" class="klink">
+            <div class="klink-icon">🔗</div>
+            <div><h4>Linktree</h4><span>linktr.ee/spm_foundation1724</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="kontak-form-box rw" data-d="1">
+        <div class="form-title">Kirim Pesan</div>
+        <div class="form-sub">Isi form ini dan kami akan merespons dalam 1×24 jam</div>
+        <div class="fg-row">
+          <div class="fg"><label>Nama Lengkap</label><input type="text" id="kNama" placeholder="Nama lengkap kamu"></div>
+          <div class="fg"><label>Email</label><input type="email" id="kEmail" placeholder="email@kamu.com"></div>
+        </div>
+        <div class="fg">
+          <label>Topik</label>
+          <select id="kTopik">
+            <option value="">— Pilih Topik —</option>
+            <option>Info Beasiswa KIP Kuliah</option>
+            <option>Info Beasiswa LPDP</option>
+            <option>Sharing Session</option>
+            <option>Kemitraan / Kolaborasi</option>
+            <option>Bergabung Komunitas</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="fg"><label>Pesan</label><textarea id="kPesan" placeholder="Tulis pesanmu di sini..."></textarea></div>
+        <button class="btn-send" onclick="submitKontak()">📨 Kirim Pesan Sekarang</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom:1rem">
+          <div class="brand-icon">SPM</div>
+          <div class="brand-text"><strong style="color:var(--white)">SPM Foundation</strong><em style="color:var(--sky)">EduPlatform</em></div>
+        </div>
+        <p>Komunitas Sahabat Pendidikan Maju Foundation — wadah pelajar & mahasiswa Indonesia untuk mengakses informasi beasiswa dan pendidikan terbaik sejak 2024.</p>
+        <p style="color:rgba(255,255,255,.25);font-size:12px;margin-top:.375rem">📧 fpmbicommunity@gmail.com</p>
+        <div class="social-row" style="margin-top:1.5rem">
+          <a href="https://instagram.com/spm_foundation/" target="_blank" class="sc">📸</a>
+          <a href="#" class="sc">🎵</a>
+          <a href="mailto:fpmbicommunity@gmail.com" class="sc">✉️</a>
+          <a href="https://linktr.ee/spm_foundation1724" target="_blank" class="sc">🔗</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#sejarah">Sejarah</a></li>
+          <li><a href="#visi">Visi & Misi</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="#partner">Partnership</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul class="footer-links">
+          <li><a href="#">Beasiswa KIP Kuliah</a></li>
+          <li><a href="#">Beasiswa LPDP</a></li>
+          <li><a href="#">Beasiswa Unggulan</a></li>
+          <li><a href="#">Beasiswa Internasional</a></li>
+          <li><a href="#">Sharing Session</a></li>
+          <li><a href="#">Mentoring 1-on-1</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="color:rgba(255,255,255,.4);font-size:13px;margin-bottom:.75rem;line-height:1.65">Dapatkan info beasiswa terbaru langsung di email kamu setiap minggu.</p>
+        <div class="nl-form">
+          <input type="email" id="nlEmail" placeholder="email@kamu.com">
+          <button onclick="submitNL()">→</button>
+        </div>
+        <p style="color:rgba(255,255,255,.2);font-size:11px;margin-top:1rem">🏛️ Berawal dari FPMBI · Berdiri 2024</p>
+        <p style="color:rgba(255,255,255,.2);font-size:11px;margin-top:.25rem">📱 @spm_foundation di semua platform</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 SPM Foundation — Sahabat Pendidikan Maju. Hak Cipta Dilindungi.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="https://linktr.ee/spm_foundation1724" target="_blank">Linktree</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT BUTTONS -->
+<div class="float-group">
+  <a href="https://wa.me/" target="_blank" class="float-btn fb-wa" title="WhatsApp">💬</a>
+  <button class="float-btn fb-up" id="fbUp" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Ke atas">↑</button>
+</div>
+
+<!-- MODAL: PROGRAM -->
+<div class="modal-overlay" id="mProgram">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('mProgram')">✕</button>
+    <div id="mProgContent"></div>
+  </div>
+</div>
+
+<!-- MODAL: RELAWAN -->
+<div class="modal-overlay" id="mRelawan">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('mRelawan')">✕</button>
+    <span class="modal-icon">🙋</span>
+    <h3>Bergabung dengan SPM Foundation</h3>
+    <p>Daftarkan diri kamu sebagai anggota komunitas dan dapatkan akses eksklusif informasi beasiswa terlengkap!</p>
+    <div class="fg-row">
+      <div class="fg"><label>Nama Lengkap</label><input type="text" placeholder="Nama lengkap"></div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="email@kamu.com"></div>
+    </div>
+    <div class="fg"><label>Status Saat Ini</label>
+      <select><option>Siswa SMA/SMK</option><option>Mahasiswa S1</option><option>Mahasiswa S2/S3</option><option>Alumni</option></select>
+    </div>
+    <div class="fg"><label>Universitas / Sekolah</label><input type="text" placeholder="Nama institusi kamu"></div>
+    <div class="fg"><label>Nomor WhatsApp (opsional)</label><input type="tel" placeholder="08xxxxxxxxxx"></div>
+    <button class="btn-send" onclick="closeModal('mRelawan');toast('🎉 Pendaftaran Berhasil!','Selamat bergabung dengan SPM Foundation! Cek email kamu.')">Daftar Sekarang 🚀</button>
+  </div>
+</div>
+
+<!-- MODAL: PARTNER -->
+<div class="modal-overlay" id="mPartner">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('mPartner')">✕</button>
+    <span class="modal-icon">🤝</span>
+    <h3>Ajukan Partnership</h3>
+    <p>Kami terbuka untuk kolaborasi yang berdampak positif bagi pendidikan Indonesia. Ceritakan proposal kemitraanmu!</p>
+    <div class="fg"><label>Nama Organisasi</label><input type="text" placeholder="Nama organisasi / lembaga"></div>
+    <div class="fg"><label>Jenis Kemitraan</label>
+      <select><option>Kolaborasi Program</option><option>Sponsorship</option><option>Pertukaran Konten</option><option>Event Bersama</option><option>Lainnya</option></select>
+    </div>
+    <div class="fg"><label>Email Kontak</label><input type="email" placeholder="email@organisasi.com"></div>
+    <div class="fg"><label>Deskripsi Proposal</label><textarea placeholder="Jelaskan proposal kemitraan kamu secara singkat..." style="width:100%;min-height:90px;background:var(--off);border:1.5px solid var(--gray2);border-radius:12px;padding:12px 16px;font-family:var(--font-b);font-size:14px;outline:none;color:var(--navy);resize:vertical"></textarea></div>
+    <button class="btn-send" onclick="closeModal('mPartner');toast('📩 Proposal Terkirim!','Tim kami akan menghubungi kamu segera. Terima kasih!')">Kirim Proposal Sekarang</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// CURSOR
+// ═══════════════════════════════════════
+const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+setInterval(()=>{
+  rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+},16);
+document.querySelectorAll('a,button,.prog-card,.founder-card,.partner-card,.news-item,.news-main,.tl-crd,.dk-card,.misi-row,.testi-card,.rm-card,.faq-q,.klink').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hover-cta'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hover-cta'));
+});
+
+// ═══════════════════════════════════════
+// PRELOADER
+// ═══════════════════════════════════════
+(function(){
+  const pre=document.getElementById('pre'),pct=document.getElementById('pct'),bf=document.getElementById('barFill');
+  let p=0;
+  const t=setInterval(()=>{
+    p+=Math.random()*15+5;
+    if(p>=100){p=100;clearInterval(t);setTimeout(()=>{pre.classList.add('gone');startHeroAnim()},500)}
+    const v=Math.min(Math.round(p),100);
+    pct.textContent=v;
+    bf.style.width=v+'%';
+  },80);
+})();
+
+// ═══════════════════════════════════════
+// HERO ANIMATION
+// ═══════════════════════════════════════
+function startHeroAnim(){
+  const words=['hw1','hw2','hw3','hw4'];
+  words.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el){setTimeout(()=>{el.style.transform='translateY(0)'},300+i*200)}
+  });
+  setTimeout(()=>{
+    document.getElementById('heroDesc')?.classList.add('vis');
+    document.getElementById('heroBtns')?.classList.add('vis');
+    document.getElementById('heroSoc')?.classList.add('vis');
+    document.getElementById('heroCard')?.classList.add('vis');
+  },600);
+}
+
+// ═══════════════════════════════════════
+// SCROLL
+// ═══════════════════════════════════════
+const pbar=document.getElementById('pbar'),fbUp=document.getElementById('fbUp');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement,s=window.scrollY,t=h.scrollHeight-h.clientHeight;
+  pbar.style.width=(s/t*100)+'%';
+  fbUp.classList.toggle('vis',s>400);
+  document.getElementById('nav').classList.toggle('solid',s>20);
+  // nav active
+  document.querySelectorAll('section[id]').forEach(sec=>{
+    const r=sec.getBoundingClientRect();
+    if(r.top<=100&&r.bottom>100){
+      document.querySelectorAll('.nav-menu a').forEach(a=>a.classList.remove('active'));
+      const a=document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+  // timeline
+  const tl=document.getElementById('tlFill'),tw=document.querySelector('.timeline-wrap');
+  if(tl&&tw){
+    const r=tw.getBoundingClientRect();
+    const filled=Math.max(0,Math.min(window.innerHeight-r.top,r.height));
+    tl.style.height=filled+'px';
+  }
+  // stat bars
+  document.querySelectorAll('.stat-bar-fill:not(.done)').forEach(b=>{
+    const r=b.getBoundingClientRect();
+    if(r.top<window.innerHeight-50){
+      b.style.width=b.dataset.w+'%';
+      b.classList.add('done');
+    }
+  });
+});
+
+// ═══════════════════════════════════════
+// REVEAL
+// ═══════════════════════════════════════
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.rw').forEach(el=>io.observe(el));
+
+// ═══════════════════════════════════════
+// COUNTER
+// ═══════════════════════════════════════
+function animCount(el,target){
+  const dur=2000,step=16,total=dur/step;
+  let fr=0;
+  const t=setInterval(()=>{
+    fr++;const v=Math.round(target*(fr/total));
+    if(fr>=total){el.textContent=target.toLocaleString('id-ID')+(target>=1000?'+':'');clearInterval(t);return}
+    el.textContent=v.toLocaleString('id-ID');
+  },step);
+}
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animCount(e.target,parseInt(e.target.dataset.c));
+      cio.unobserve(e.target);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('[data-c]').forEach(el=>cio.observe(el));
+
+// ═══════════════════════════════════════
+// HERO CANVAS
+// ═══════════════════════════════════════
+(function(){
+  const cv=document.getElementById('heroCanvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  let W,H,pts=[];
+  function init(){
+    W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;
+    pts=Array.from({length:70},()=>({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,
+      r:Math.random()*2+.5,
+      c:['rgba(255,217,61','rgba(6,182,212','rgba(132,204,22','rgba(168,85,247','rgba(255,107,107'][Math.floor(Math.random()*5)]
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach((p,i)=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.c+',.7)';ctx.fill();
+      for(let j=i+1;j<pts.length;j++){
+        const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){ctx.strokeStyle=p.c+','+(1-d/120)*.12+')';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',init);init();draw();
+})();
+
+// ═══════════════════════════════════════
+// HERO BARS
+// ═══════════════════════════════════════
+(function(){
+  const c=document.getElementById('chartBars');
+  if(!c)return;
+  const data=[10,22,35,50,64,78,90,100];
+  const months=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu'];
+  const colors=['rgba(6,182,212','rgba(132,204,22','rgba(255,217,61','rgba(168,85,247','rgba(255,107,107','rgba(6,182,212','rgba(132,204,22','rgba(255,217,61'];
+  data.forEach((v,i)=>{
+    const w=document.createElement('div');w.className='bar-wrap';
+    const b=document.createElement('div');b.className='bar-fill';
+    b.style.cssText=`background:${colors[i]},.8);height:0;transition:height 1s cubic-bezier(.34,1.56,.64,1) ${i*.1+.5}s`;
+    const m=document.createElement('div');m.className='bar-mo';m.textContent=months[i];
+    w.append(b,m);c.append(w);
+    setTimeout(()=>b.style.height=(v*0.6)+'px',200);
+  });
+})();
+
+// ═══════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════
+function toggleNav(){document.getElementById('navMenu').classList.toggle('open')}
+document.querySelectorAll('.nav-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navMenu').classList.remove('open')));
+
+// ═══════════════════════════════════════
+// SMOOTH SCROLL
+// ═══════════════════════════════════════
+function scrollTo(sel){const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth'})}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+
+// ═══════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════
+function toast(title,msg,color){
+  const nt=document.getElementById('notif-toast');
+  document.getElementById('notif-icon').textContent=title.includes('⚠')?'⚠️':'✅';
+  document.getElementById('notif-title').textContent=title;
+  document.getElementById('notif-msg').textContent=msg;
+  nt.style.borderLeftColor=color||'var(--sky)';
+  nt.classList.add('show');
+  setTimeout(()=>nt.classList.remove('show'),4000);
+}
+
+// ═══════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open')}));
+
+// ═══════════════════════════════════════
+// PROGRAM MODAL
+// ═══════════════════════════════════════
+const progs=[
+  {icon:'🏆',color:'#0F172A',title:'Pembinaan Pejuang KIP Kuliah',desc:'Program bimbingan komprehensif bagi calon mahasiswa baru untuk memahami proses pendaftaran, seleksi, dan strategi lolos beasiswa KIP Kuliah (KIPK). Mencakup pendampingan pemilihan jurusan sesuai minat dan kemampuan, pelatihan penyusunan esai beasiswa, dan mentoring intensif.',details:['📋 Panduan Pendaftaran KIPK Step by Step','✍️ Pelatihan Penyusunan Esai','👤 Mentoring 1-on-1 dengan Penerima Aktif','🏫 Konsultasi Pemilihan Jurusan','🎯 Simulasi Seleksi & Wawancara','📊 Analisis Profil Beasiswa']},
+  {icon:'💬',color:'#D97706',title:'Sharing Session',desc:'Sesi berbagi rutin yang menghadirkan penerima beasiswa aktif, alumni sukses, dan tokoh inspiratif dari berbagai universitas terkemuka di Indonesia. Peserta mendapatkan wawasan nyata tentang pengalaman kuliah dengan beasiswa dan tips menghadapi seleksi.',details:['🎙️ Narasumber Penerima Beasiswa Aktif','🎓 Sesi Tanya Jawab Langsung','📹 Rekaman Tersedia untuk Anggota','🌐 Online & Offline Event','🔔 Notifikasi via Instagram & WhatsApp']},
+  {icon:'📚',color:'#0891B2',title:'Info Beasiswa Lengkap',desc:'Menyediakan informasi akurat dan terkini tentang berbagai beasiswa dalam dan luar negeri: KIP Kuliah, LPDP, Beasiswa Unggulan Kemendikbud, serta beasiswa internasional dari berbagai negara. Setiap informasi dilengkapi dengan persyaratan detail dan timeline pendaftaran.',details:['🇮🇩 KIP Kuliah / KIPK Lengkap','💼 LPDP Dalam & Luar Negeri','⭐ Beasiswa Unggulan Kemendikbud','🌍 Beasiswa Internasional 20+ Negara','📅 Update Timeline Rutin Setiap Hari']},
+  {icon:'🗺️',color:'#7C3AED',title:'Panduan Jurusan & Kampus',desc:'Membantu pelajar dalam memilih jurusan dan universitas yang tepat sesuai minat, bakat, dan target karir. Menyediakan informasi sistem seleksi masuk PTN dan PTS, serta gambaran peluang karir setelah lulus dari berbagai bidang studi.',details:['🏛️ Info Seleksi PTN & PTS Terlengkap','📊 Peluang Karir per Jurusan','🧭 Konsultasi Pilihan Studi','📈 Passing Grade & Statistik Terkini','🎯 Strategi Masuk Kampus Impian']},
+  {icon:'🌐',color:'#DC2626',title:'Jaringan Beasiswa Internasional',desc:'Membangun kerja sama strategis dengan lembaga dan organisasi pemberi beasiswa dalam dan luar negeri untuk memperluas akses anggota komunitas. Program ini juga menyediakan pelatihan eksklusif dan membangun jaringan alumni mahasiswa penerima beasiswa yang saling mendukung.',details:['🌏 Network Alumni 20+ Negara','🤝 Kemitraan Lembaga Beasiswa','🏆 Pelatihan Eksklusif Persiapan','📜 Sertifikat & Rekognisi Resmi','💡 Info Beasiswa Hidden Gems']},
+];
+function openProgModal(idx){
+  const p=progs[idx];
+  document.getElementById('mProgContent').innerHTML=`
+    <div style="font-size:3.5rem;text-align:center;margin-bottom:1rem">${p.icon}</div>
+    <h3 style="font-family:var(--font-h);color:${p.color};margin-bottom:.5rem;font-size:1.4rem">${p.title}</h3>
+    <p style="font-size:13.5px;color:var(--gray4);line-height:1.75;margin-bottom:1.5rem">${p.desc}</p>
+    <div style="background:var(--off);border-radius:14px;padding:1.25rem;margin-bottom:1.5rem">
+      <div style="font-family:var(--font-m);font-size:10px;font-weight:700;color:var(--gray4);letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem">Yang Kamu Dapatkan</div>
+      ${p.details.map(d=>`<div style="font-size:13.5px;color:var(--navy);font-weight:600;padding:.3rem 0">${d}</div>`).join('')}
+    </div>
+    <button class="btn-send" style="background:${p.color}" onclick="closeModal('mProgram');document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">📩 Hubungi Kami untuk Info Lebih →</button>
+  `;
+  openModal('mProgram');
+}
+
+// ═══════════════════════════════════════
+// KONTAK FORM
+// ═══════════════════════════════════════
+function submitKontak(){
+  const n=document.getElementById('kNama').value.trim();
+  const e=document.getElementById('kEmail').value.trim();
+  const p=document.getElementById('kPesan').value.trim();
+  if(!n||!e||!p){toast('⚠️ Form Belum Lengkap','Mohon isi semua kolom yang diperlukan.','#E6A500');return}
+  toast('📨 Pesan Terkirim!','Kami akan merespons dalam 1×24 jam. Terima kasih!');
+  ['kNama','kEmail','kPesan'].forEach(id=>{document.getElementById(id).value=''});
+}
+
+// ═══════════════════════════════════════
+// NEWSLETTER
+// ═══════════════════════════════════════
+function submitNL(){
+  const e=document.getElementById('nlEmail').value.trim();
+  if(!e){return}
+  toast('📬 Subscribe Berhasil!','Info beasiswa terbaru akan dikirim ke email kamu.');
+  document.getElementById('nlEmail').value='';
+}
+
+// ═══════════════════════════════════════
+// FAQ ACCORDION
+// ═══════════════════════════════════════
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  const ans=item.querySelector('.faq-a');
+  const inner=item.querySelector('.faq-a-inner');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight='0';
+    i.querySelector('.faq-a').style.paddingBottom='0';
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    ans.style.maxHeight=inner.scrollHeight+24+'px';
+  }
+}
+
+// ═══════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════
+const quizData=[
+  {q:'Apa singkatan dari KIP Kuliah?',sub:'Pilih jawaban yang paling tepat',opts:['Kartu Informasi Pendidikan Kuliah','Kartu Indonesia Pintar Kuliah','Kredit Insentif Pendidikan Kuliah','Kartu Identitas Pelajar Kuliah'],ans:1},
+  {q:'Tahun berapa SPM Foundation resmi berdiri?',sub:'Berdasarkan informasi di profil ini',opts:['2022','2023','2024','2025','2026'],ans:2},
+  {q:'Berapa jumlah founder SPM Foundation?',sub:'Berdasarkan biodata yang tersedia',opts:['4 orang','5 orang','6 orang','7 orang'],ans:2},
+  {q:'Beasiswa mana yang khusus untuk studi lanjut S2/S3?',sub:'Pilih yang paling sesuai',opts:['KIP Kuliah','LPDP','Beasiswa Unggulan S1','Bidikmisi'],ans:1},
+  {q:'Kapan SPM Community berganti nama menjadi SPM Foundation?',sub:'Berdasarkan sejarah komunitas ini',opts:['Juli 2024','September 2024','Oktober 2024','November 2024'],ans:3},
+];
+let curQ=0,score=0,answered=false;
+
+function renderQ(){
+  const d=quizData[curQ];
+  document.getElementById('quizQ').textContent=d.q;
+  document.getElementById('quizSub').textContent=d.sub;
+  document.getElementById('quizCtr').textContent=(curQ+1)+' / '+quizData.length;
+  document.getElementById('quizProg').style.width=((curQ/quizData.length)*100)+'%';
+  document.getElementById('quizNext').style.display='none';
+  answered=false;
+  const optsEl=document.getElementById('quizOpts');
+  optsEl.innerHTML='';
+  d.opts.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='quiz-opt';
+    btn.innerHTML=`<span class="quiz-opt-num">${String.fromCharCode(65+i)}</span>${o}`;
+    btn.onclick=()=>selectAnswer(i);
+    optsEl.append(btn);
+  });
+}
+
+function selectAnswer(idx){
+  if(answered)return;
+  answered=true;
+  const d=quizData[curQ];
+  const opts=document.querySelectorAll('.quiz-opt');
+  opts.forEach((o,i)=>{
+    o.onclick=null;
+    if(i===d.ans)o.classList.add('correct');
+    else if(i===idx&&idx!==d.ans)o.classList.add('wrong');
+  });
+  if(idx===d.ans)score++;
+  document.getElementById('quizNext').style.display='inline-block';
+}
+
+function nextQ(){
+  curQ++;
+  if(curQ>=quizData.length){showResult();return}
+  renderQ();
+}
+
+function showResult(){
+  document.getElementById('quizProg').style.width='100%';
+  const pct=Math.round((score/quizData.length)*100);
+  let msg='';
+  if(pct>=80)msg='Luar Biasa! Kamu sangat siap mendaftar beasiswa! 🎉';
+  else if(pct>=60)msg='Bagus! Sedikit lagi kamu akan sangat siap! 💪';
+  else msg='Terus semangat belajar! SPM Foundation siap membantumu! 📚';
+  document.getElementById('quizContent').innerHTML=`
+    <div class="quiz-result">
+      <div class="quiz-result-score">${pct}<small style="font-size:2rem">%</small></div>
+      <div class="quiz-result-lbl">${score} dari ${quizData.length} jawaban benar</div>
+      <p style="font-size:15px;color:var(--gray4);margin-bottom:2rem">${msg}</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn-solid" onclick="curQ=0;score=0;renderQ();document.getElementById('quizContent').innerHTML='<div class=\\'quiz-progress\\'><div class=\\'quiz-prog-fill\\' id=\\'quizProg\\' style=\\'width:0\\'></div></div><div class=\\'quiz-question\\' id=\\'quizQ\\'></div><div class=\\'quiz-sub\\' id=\\'quizSub\\'></div><div class=\\'quiz-options\\' id=\\'quizOpts\\'></div><div class=\\'quiz-nav\\'><span class=\\'quiz-counter\\' id=\\'quizCtr\\'></span><button class=\\'btn-solid\\' id=\\'quizNext\\' onclick=\\'nextQ()\\' style=\\'display:none;padding:10px 24px\\'>Lanjut →</button></div>';curQ=0;score=0;renderQ()">Ulangi Quiz</button>
+        <button class="btn-outline" onclick="document.getElementById('program').scrollIntoView({behavior:'smooth'})">Lihat Program Kami</button>
+      </div>
+    </div>
+  `;
+}
+
+renderQ();
+
+// ═══════════════════════════════════════
+// KALKULATOR
+// ═══════════════════════════════════════
+function calcUpdate(){
+  const nilai=parseFloat(document.getElementById('cNilai').value)||0;
+  const penghasilan=parseFloat(document.getElementById('cPenghasilan').value)||0;
+  const status=parseInt(document.getElementById('cStatus').value)||1;
+  const prestasi=parseInt(document.getElementById('cPrestasi').value)||1;
+
+  let skor=0;
+  skor+=Math.min(nilai,100)*0.4;
+  skor+=Math.max(0,(10-penghasilan)/10)*25;
+  skor+=status*10;
+  skor+=prestasi*8;
+  skor=Math.round(Math.min(skor,100));
+
+  let kipk=0;
+  if(nilai>=80)kipk+=30;
+  else if(nilai>=70)kipk+=20;
+  kipk+=penghasilan<3?35:penghasilan<6?20:penghasilan<10?10:0;
+  kipk+=status===3?25:status===2?15:5;
+  kipk+=prestasi===3?10:prestasi===2?6:2;
+  kipk=Math.round(Math.min(kipk,98));
+
+  let lpdp=0;
+  if(nilai>=85)lpdp+=35;
+  else if(nilai>=80)lpdp+=25;
+  else if(nilai>=75)lpdp+=15;
+  lpdp+=prestasi===3?30:prestasi===2?18:8;
+  lpdp+=status===3?10:status===2?6:3;
+  lpdp=Math.round(Math.min(lpdp,95));
+
+  document.getElementById('cResPerluang').textContent=kipk+'%';
+  document.getElementById('cResLPDP').textContent=lpdp+'%';
+  document.getElementById('cResSkor').textContent=skor;
+}
+calcUpdate();
+
+// ═══════════════════════════════════════
+// TICKER CLONE
+// ═══════════════════════════════════════
+(function(){
+  const t=document.getElementById('ticker');
+  if(t){t.innerHTML+=t.innerHTML}
+})();
+</script>
+</body>
+</html>
