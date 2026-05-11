@@ -1,0 +1,188 @@
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-violet rw">🧠 Uji Pengetahuan</div>
+      <h2 class="sec-h2 rw" data-d="1">Seberapa Paham Kamu tentang <em>Beasiswa</em>?</h2>
+      <p class="sec-p rw" data-d="2">Jawab pertanyaan berikut dan cari tahu seberapa siap kamu mendaftar beasiswa impian!</p>
+    </div>
+    <div class="quiz-wrap rw">
+      <div class="quiz-progress"><div class="quiz-prog-fill" id="quizProg" style="width:0"></div></div>
+      <div id="quizContent">
+        <div class="quiz-question" id="quizQ">Pertanyaan akan muncul di sini</div>
+        <div class="quiz-sub" id="quizSub">Pilih salah satu jawaban yang paling tepat</div>
+        <div class="quiz-options" id="quizOpts"></div>
+        <div class="quiz-nav">
+          <span class="quiz-counter" id="quizCtr">1 / 5</span>
+          <button class="btn-solid" id="quizNext" onclick="nextQ()" style="display:none;padding:10px 24px">Lanjut →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kalkulator">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-sky rw">🧮 Kalkulator</div>
+      <h2 class="sec-h2 rw" data-d="1">Kalkulator <em>Peluang Beasiswa</em></h2>
+      <p class="sec-p rw" data-d="2">Estimasikan peluang kamu mendapatkan beasiswa berdasarkan profil akademik dan kondisimu.</p>
+    </div>
+    <div class="calc-wrap rw">
+      <div class="calc-head">
+        <span class="calc-head-icon">🎯</span>
+        <h3>Kalkulator Peluang Beasiswa KIPK</h3>
+      </div>
+      <div class="calc-body">
+        <div class="calc-row">
+          <div class="calc-fg">
+            <label>Nilai Rata-rata Rapor (0-100)</label>
+            <input type="number" id="cNilai" min="60" max="100" value="85" oninput="calcUpdate()">
+          </div>
+          <div class="calc-fg">
+            <label>Penghasilan Orang Tua (juta/bulan)</label>
+            <input type="number" id="cPenghasilan" min="0" max="20" value="3" oninput="calcUpdate()">
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="calc-fg">
+            <label>Status Sosial</label>
+            <select id="cStatus" onchange="calcUpdate()">
+              <option value="3">Tidak Mampu (KKS/PKH)</option>
+              <option value="2" selected>Menengah Bawah</option>
+              <option value="1">Menengah</option>
+            </select>
+          </div>
+          <div class="calc-fg">
+            <label>Prestasi Akademik</label>
+            <select id="cPrestasi" onchange="calcUpdate()">
+              <option value="3">Juara Nasional / Olimpiade</option>
+              <option value="2" selected>Juara Sekolah / Kota</option>
+              <option value="1">Tidak Ada Prestasi Khusus</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="calc-res-item">
+            <span class="calc-res-val" id="cResPerluang">0%</span>
+            <span class="calc-res-lbl">Peluang KIPK</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-val" id="cResLPDP">0%</span>
+            <span class="calc-res-lbl">Peluang LPDP*</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-val" id="cResSkor">0</span>
+            <span class="calc-res-lbl">Skor Profil</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--gray3);text-align:center;margin-top:1rem">* Estimasi kasar berdasarkan faktor umum. Hasil aktual bergantung pada kebijakan resmi penyelenggara beasiswa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-hdr center">
+      <div class="sec-tag tag-coral rw">❓ FAQ</div>
+      <h2 class="sec-h2 rw" data-d="1">Pertanyaan yang <em>Sering Ditanya</em></h2>
+      <p class="sec-p rw" data-d="2">Temukan jawaban atas pertanyaan umum seputar SPM Foundation dan program beasiswa yang kami informasikan.</p>
+    </div>
+    <div class="faq-list rw">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Apa itu SPM Foundation dan bagaimana cara bergabung?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SPM Foundation (Sahabat Pendidikan Maju Foundation) adalah komunitas pendidikan yang berdiri sejak 2024, berawal dari FPMBI. Untuk bergabung, kamu bisa mengikuti akun Instagram @spm_foundation atau menghubungi kami melalui email fpmbicommunity@gmail.com. Keanggotaan komunitas ini gratis dan terbuka untuk semua pelajar dan mahasiswa Indonesia.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Apakah SPM Foundation membantu dalam proses pendaftaran KIP Kuliah?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Ya! Program utama kami adalah Pembinaan Pejuang KIP Kuliah. Kami menyediakan panduan lengkap pendaftaran, pelatihan penyusunan esai, mentoring 1-on-1 dengan penerima KIPK aktif, dan konsultasi pemilihan jurusan. Semua program ini dirancang untuk memaksimalkan peluangmu lolos seleksi.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Jenis beasiswa apa saja yang diinformasikan oleh SPM Foundation?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Kami menginformasikan berbagai jenis beasiswa, mulai dari KIP Kuliah (KIPK), LPDP dalam dan luar negeri, Beasiswa Unggulan Kemendikbud, Beasiswa Bidikmisi, hingga beasiswa internasional dari berbagai negara seperti Turki (YTB), DAAD Jerman, Chevening UK, dan masih banyak lagi. Semua informasi dilengkapi syarat, timeline, dan tips strategi pendaftaran.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Seberapa sering SPM Foundation mengadakan sharing session?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SPM Foundation rutin mengadakan sharing session setiap bulan. Narasumber yang dihadirkan adalah penerima beasiswa aktif, alumni dari berbagai universitas terkemuka, serta tokoh inspiratif di bidang pendidikan. Informasi jadwal terbaru selalu diupdate di Instagram @spm_foundation.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Siapa saja founder SPM Foundation?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SPM Foundation didirikan oleh 6 mahasiswa berprestasi: Rustanto (Universitas Negeri Semarang, 2023), Safinaturrahmah (Universitas Mataram, 2021), Moh. Ulil Absor (Universitas Trisakti, 2023), Safta Arwandi C.Ps. (UIN Raden Fatah, 2023), Maulana Hanif Zulkhoirurroziqin (Universitas Negeri Semarang, 2023), dan Midun Okta Apandi (STAI Baturaja, 2022).</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h4>Bagaimana cara mengajukan partnership dengan SPM Foundation?</h4>
+          <div class="faq-arrow">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Untuk mengajukan partnership, kamu bisa mengisi formulir di halaman kontak kami, atau mengirim email langsung ke fpmbicommunity@gmail.com dengan subject "Proposal Partnership". Tim kami akan merespons dalam 1×24 jam. Saat ini kami telah bermitra dengan Indonesian Intellectuals, LDK Al-Mufid STAI Baturaja, dan Forum Pemuda Sosial ID Community.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="wrap">
+    <div class="kontak-grid">
+      <div class="rw">
+        <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">📬 Kontak</div>
+        <h2 class="sec-h2" style="color:var(--white);margin-top:.75rem">Mari <span style="color:var(--sky)">Terhubung</span> Bersama</h2>
+        <p class="sec-p" style="color:rgba(255,255,255,.6)">Punya pertanyaan soal beasiswa, ingin berkolaborasi, atau bergabung sebagai anggota komunitas? Kami siap membantu!</p>
+        <div class="kontak-links">
+          <a href="https://instagram.com/spm_foundation/" target="_blank" class="klink">
+            <div class="klink-icon">📸</div>
+            <div><h4>Instagram</h4><span>@spm_foundation · 31.900+ Pengikut</span></div>
+          </a>
+          <a href="#" class="klink">
+            <div class="klink-icon">🎵</div>
+            <div><h4>TikTok</h4><span>@spm_foundation</span></div>
+          </a>
+          <a href="mailto:fpmbicommunity@gmail.com" class="klink">
+            <div class="klink-icon">✉️</div>
+            <div><h4>Email</h4><span>fpmbicommunity@gmail.com</span></div>
+          </a>
+          <a href="https://linktr.ee/spm_foundation1724" target="_blank" class="klink">
+            <div class="klink-icon">🔗</div>
+            <div><h4>Linktree</h4><span>linktr.ee/spm_foundation1724</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="kontak-form-box rw" data-d="1">
+        <div class="form-title">Kirim Pesan</div>
+        <div class="form-sub">Isi form ini dan kami akan merespons dalam 1×24 jam</div>
+        <div class="fg-row">
+          <div class="fg"><label>Nama Lengkap</label><input type="text" id="kNama" placeholder="Nama lengkap kamu"></div>
+          <div class="fg"><label>Email</label><input type="email" id="kEmail" placeholder="email@kamu.com"></div>
+        </div>
+        <div class="fg">
+          <label>Topik</label>
+          <select id="kTopik">
+            <option value="">— Pilih Topik —</option>
+            <option>Info Beasiswa KIP Kuliah</option>
+            <option>Info Beasiswa LPDP</option>
+            <option>Sharing Session</option>
+            <option>Kemitraan / Kolaborasi</option>
+            <option>Bergabung Komunitas</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="fg"><label>Pesan</label><textarea id="kPesan" placeholder="Tulis pesanmu di sini..."></textarea></div>
+        <button class="btn-send" onclick="submitKontak()">📨 Kirim Pesan Sekarang</button>
+      </div>
+    </div>
+  </div>
+</section>

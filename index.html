@@ -5,22 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SPM Foundation — Sahabat Pendidikan Maju</title>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<!-- ─── CSS Modules (replaces single style.css) ─── -->
-<link rel="stylesheet" href="css/base.css">           <!-- Variables, reset, buttons, forms -->
-<link rel="stylesheet" href="css/cursor-preloader.css"><!-- Custom cursor + preloader -->
-<link rel="stylesheet" href="css/nav.css">            <!-- Navigation bar -->
-<link rel="stylesheet" href="css/hero.css">           <!-- Hero section + ticker -->
-<link rel="stylesheet" href="css/sections-1.css">     <!-- About, Timeline, Visi-Misi, Program -->
-<link rel="stylesheet" href="css/sections-2.css">     <!-- Dampak, Testimoni, Roadmap, Founder, Partner, Berita -->
-<link rel="stylesheet" href="css/interactive.css">    <!-- Quiz, Calculator, FAQ, Kontak, Modal, Toast, Float, Footer -->
-<link rel="stylesheet" href="css/responsive.css">     <!-- Breakpoints: Mobile / Tablet / Desktop -->
+<!-- ─── CSS Modules ─── -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/cursor-preloader.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/sections-1.css">
+<link rel="stylesheet" href="css/sections-2.css">
+<link rel="stylesheet" href="css/interactive.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
+<!-- ── Cursor ── -->
 <div id="cur-dot"></div>
 <div id="cur-ring"></div>
+
+<!-- ── Scroll Progress Bar ── -->
 <div id="pbar"></div>
 
+<!-- ── Preloader ── -->
 <div id="pre">
   <div class="pre-logo-wrap">
     <div class="pre-hex">
@@ -36,6 +40,7 @@
   <div class="pre-txt">Memuat SPM Foundation</div>
 </div>
 
+<!-- ── Toast Notification ── -->
 <div id="notif-toast">
   <span id="notif-icon">✅</span>
   <div>
@@ -44,6 +49,7 @@
   </div>
 </div>
 
+<!-- ── Navigation ── -->
 <nav id="nav">
   <div class="nav-inner">
     <a href="#hero" class="brand">
@@ -75,6 +81,7 @@
   </div>
 </nav>
 
+<!-- ── Hero ── -->
 <section id="hero">
   <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-blobs">
@@ -153,6 +160,7 @@
   </div>
 </section>
 
+<!-- ── Ticker ── -->
 <div class="ticker-strip">
   <div class="ticker-scroll" id="ticker">
     <span class="ticker-item">Info Beasiswa KIP Kuliah 2026</span>
@@ -172,623 +180,17 @@
   </div>
 </div>
 
-<section id="tentang">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="rw">
-        <div class="about-visual">
-          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">🎓</span><span class="acard-name">Beasiswa & Info Edu</span><span class="acard-sub">Program Utama</span></div></div></div>
-          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">💬</span><span class="acard-name">Sharing Session</span><span class="acard-sub">Rutin</span></div></div></div>
-          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">🌐</span><span class="acard-name">Beasiswa Internasional</span><span class="acard-sub">LPDP & Luar Negeri</span></div></div></div>
-          <div class="acard"><div class="acard-inner"><div class="acard-fill"><span class="acard-icon">🤝</span><span class="acard-name">Komunitas & Kolaborasi</span><span class="acard-sub">Partnership</span></div></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="sec-tag tag-sky rw">📚 Tentang SPM Foundation</div>
-        <h2 class="sec-h2 rw" data-d="1">Wadah Pelajar & Mahasiswa <em>Raih Pendidikan Terbaik</em></h2>
-        <p class="sec-p rw" data-d="2">Di era yang semakin kompetitif ini, akses terhadap pendidikan berkualitas menjadi faktor penting dalam membangun masa depan yang cerah. SPM Foundation hadir sebagai komunitas yang menyediakan informasi lengkap mengenai pendidikan dan berbagai peluang beasiswa, baik dalam negeri maupun luar negeri.</p>
-        <p class="sec-p rw" data-d="2" style="margin-top:1rem">Kami rutin mengadakan sharing session bersama penerima beasiswa, alumni, dan tokoh inspiratif untuk berbagi pengalaman, tips, dan strategi sukses meraih beasiswa impian.</p>
-        <div class="vm-grid rw" data-d="3">
-          <div class="vm-box v"><h4>🌟 Visi</h4><p>Pelopor Kecemerlangan Pendidikan Indonesia — memajukan pendidikan masyarakat Indonesia secara menyeluruh.</p></div>
-          <div class="vm-box m"><h4>🚀 Misi</h4><p>Menjembatani pelajar dengan informasi beasiswa, bimbingan akademik, dan jaringan kolaboratif yang kuat.</p></div>
-        </div>
-        <div class="count-strip rw" data-d="4">
-          <div class="cnt-box"><span class="cnt-num" data-c="31900">0</span><span class="cnt-lbl">Pengikut IG</span></div>
-          <div class="cnt-box"><span class="cnt-num" data-c="1538">0</span><span class="cnt-lbl">Kiriman</span></div>
-          <div class="cnt-box"><span class="cnt-num" data-c="2024">0</span><span class="cnt-lbl">Berdiri Tahun</span></div>
-        </div>
-        <div class="stat-bar-wrap rw" data-d="5">
-          <div class="stat-bar-item">
-            <div class="stat-bar-head"><span>Beasiswa KIP Kuliah</span><span>92%</span></div>
-            <div class="stat-bar-track"><div class="stat-bar-fill" data-w="92" style="background:var(--sky)"></div></div>
-          </div>
-          <div class="stat-bar-item">
-            <div class="stat-bar-head"><span>Beasiswa LPDP</span><span>78%</span></div>
-            <div class="stat-bar-track"><div class="stat-bar-fill" data-w="78" style="background:var(--sun-d)"></div></div>
-          </div>
-          <div class="stat-bar-item">
-            <div class="stat-bar-head"><span>Beasiswa Internasional</span><span>65%</span></div>
-            <div class="stat-bar-track"><div class="stat-bar-fill" data-w="65" style="background:var(--lime-d)"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ── Page Sections (loaded from pages/) ── -->
+<div id="page-tentang"></div>
+<div id="page-sejarah"></div>
+<div id="page-visimisi"></div>
+<div id="page-program"></div>
+<div id="page-dampak"></div>
+<div id="page-founder"></div>
+<div id="page-partnership"></div>
+<div id="page-kontak"></div>
 
-<section id="sejarah">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-sun rw">📜 Sejarah Kami</div>
-      <h2 class="sec-h2 rw" data-d="1">Perjalanan <em>SPM Foundation</em></h2>
-      <p class="sec-p rw" data-d="2">Dari FPMBI hingga SPM Foundation — transformasi komunitas yang terus berkembang demi pendidikan Indonesia yang lebih baik.</p>
-    </div>
-    <div class="timeline-wrap">
-      <div class="timeline-spine"><div class="tl-spine-fill" id="tlFill" style="height:0"></div></div>
-      <div class="tl-node rw">
-        <div class="tl-emp"></div>
-        <div class="tl-mid"><div class="tl-dot"></div></div>
-        <div class="tl-crd">
-          <div class="tl-era">Awal 2024</div>
-          <div class="tl-title">FPMBI Berdiri</div>
-          <p class="tl-body">Berawal dari Forum Persatuan Mahasiswa Bidikmisi Indonesia (FPMBI), komunitas ini lahir dengan semangat persatuan mahasiswa penerima beasiswa Bidikmisi/KIPK di seluruh Indonesia. Logo awal mencerminkan semangat gotong royong dan akses pendidikan.</p>
-          <span class="tl-pill">Fase Pendiri</span>
-        </div>
-      </div>
-      <div class="tl-node rw" data-d="1">
-        <div class="tl-crd" style="text-align:right">
-          <div class="tl-era">Juli 2024</div>
-          <div class="tl-title">SPM Community</div>
-          <p class="tl-body">Pada Juli 2024, komunitas resmi berganti nama menjadi SPM Community — Komunitas Sahabat Pendidikan Maju. Perluasan misi untuk mendukung akses pendidikan yang lebih luas, tidak hanya bagi penerima Bidikmisi namun seluruh pelajar Indonesia.</p>
-          <span class="tl-pill">Transformasi</span>
-        </div>
-        <div class="tl-mid"><div class="tl-dot"></div></div>
-        <div class="tl-emp"></div>
-      </div>
-      <div class="tl-node rw" data-d="2">
-        <div class="tl-emp"></div>
-        <div class="tl-mid"><div class="tl-dot"></div></div>
-        <div class="tl-crd">
-          <div class="tl-era">November 2024</div>
-          <div class="tl-title">SPM Foundation</div>
-          <p class="tl-body">November 2024 menjadi tonggak penting — komunitas berkembang menjadi SPM Foundation dengan nama, logo baru, dan berbagai partnership strategis. Bergabung dengan Indonesian Intellectuals, LDK Al-Mufid, dan Forum Pemuda Sosial ID Community.</p>
-          <span class="tl-pill">Berkembang Hingga Kini</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="visi">
-  <div class="wrap">
-    <div class="sec-hdr center" style="position:relative;z-index:1">
-      <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">🎯 Visi & Misi</div>
-      <h2 class="sec-h2 rw" data-d="1" style="color:var(--white)">Landasan <span style="color:var(--sun)">Gerak Kami</span></h2>
-      <p class="sec-p rw" data-d="2" style="color:rgba(255,255,255,.6);margin:0 auto">Setiap langkah SPM Foundation didasari visi yang jelas dan misi terukur untuk kemajuan pendidikan Indonesia yang merata dan berkelanjutan.</p>
-    </div>
-    <div class="visi-grid">
-      <div class="visi-box rw">
-        <div class="visi-box-head">
-          <div class="visi-icon sun">🌟</div>
-          <h3>Visi Kami</h3>
-        </div>
-        <p>Sahabat Pendidikan Maju Foundation adalah komunitas yang bertujuan untuk memajukan pendidikan di masyarakat Indonesia dengan tema berdirinya yaitu "Pelopor Kecemerlangan Pendidikan Indonesia".</p>
-        <p style="margin-top:1rem;color:rgba(255,255,255,.65)">Tujuan utama mencakup meningkatkan aksesibilitas pendidikan, menyebarkan informasi terkini, dan mendukung perkembangan siswa dan mahasiswa dalam mencapai potensi penuh mereka.</p>
-        <div class="visi-theme-badge">✨ "Pelopor Kecemerlangan Pendidikan Indonesia"</div>
-      </div>
-      <div class="rw" data-d="1">
-        <h3 style="font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:1.5rem">🚀 Misi Kami</h3>
-        <div class="misi-list">
-          <div class="misi-row"><div class="misi-num-badge mn1">1</div><div><h4>Meningkatkan Aksesibilitas Pendidikan</h4><p>Memastikan setiap individu, tanpa memandang latar belakang ekonomi, memiliki akses yang sama terhadap pendidikan berkualitas.</p></div></div>
-          <div class="misi-row"><div class="misi-num-badge mn2">2</div><div><h4>Menyediakan Informasi Terkini</h4><p>Menyajikan informasi terbaru dan relevan mengenai perkembangan dunia pendidikan kepada masyarakat Indonesia.</p></div></div>
-          <div class="misi-row"><div class="misi-num-badge mn3">3</div><div><h4>Mendukung Perkembangan Siswa & Mahasiswa</h4><p>Memberikan dukungan dan sumber daya melalui program pendidikan, bimbingan, dan pelatihan terstruktur.</p></div></div>
-          <div class="misi-row"><div class="misi-num-badge mn4">4</div><div><h4>Memperkuat Kolaborasi & Kemitraan</h4><p>Membangun kemitraan kuat dengan pemerintah, lembaga pendidikan, NGO, dan sektor swasta.</p></div></div>
-          <div class="misi-row"><div class="misi-num-badge mn5">5</div><div><h4>Membangun Kesadaran Pendidikan</h4><p>Menyebarkan pentingnya pendidikan sebagai fondasi pembangunan sosial, ekonomi, dan budaya yang berkelanjutan.</p></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="program">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-lime rw">🎓 Program Unggulan</div>
-      <h2 class="sec-h2 rw" data-d="1">Program yang <em>Kami Jalankan</em></h2>
-      <p class="sec-p rw" data-d="2">SPM Foundation menjalankan berbagai program untuk mendukung akses pendidikan bagi pelajar dan mahasiswa Indonesia dari Sabang sampai Merauke.</p>
-    </div>
-    <div class="prog-grid">
-      <div class="prog-card featured rw" onclick="openProgModal(0)">
-        <div class="prog-thumb">
-          🏆
-          <div class="prog-thumb-sub">Program Unggulan #1</div>
-          <div class="prog-badge">⭐ UTAMA</div>
-        </div>
-        <div class="prog-body">
-          <h3>Pembinaan Pejuang KIP Kuliah</h3>
-          <p>Program bimbingan komprehensif bagi calon mahasiswa baru dalam memahami proses pendaftaran, seleksi, dan strategi lolos beasiswa KIP Kuliah. Mencakup pendampingan pemilihan jurusan, pelatihan esai, dan mentoring dengan penerima KIPK sebelumnya.</p>
-          <div class="prog-tags">
-            <span class="prog-tag">📋 Pendaftaran & Seleksi</span>
-            <span class="prog-tag">✍️ Pelatihan Esai</span>
-            <span class="prog-tag">👤 Mentoring 1-on-1</span>
-            <span class="prog-tag">🏫 Pemilihan Jurusan</span>
-          </div>
-          <a href="#" class="prog-link-btn" onclick="openProgModal(0);return false">Lihat Detail Program →</a>
-        </div>
-      </div>
-      <div class="prog-card rw" data-d="1" onclick="openProgModal(1)">
-        <div class="prog-thumb">💬<div class="prog-badge">Rutin</div></div>
-        <div class="prog-body">
-          <h3>Sharing Session</h3>
-          <p>Sesi berbagi rutin bersama penerima beasiswa, alumni, dan tokoh inspiratif. Peserta mendapat wawasan, tips seleksi, dan motivasi perjalanan akademik mereka.</p>
-          <div class="prog-tags"><span class="prog-tag">🎙️ Narasumber</span><span class="prog-tag">🎓 Alumni</span></div>
-          <a href="#" class="prog-link-btn" onclick="openProgModal(1);return false">Lihat Detail →</a>
-        </div>
-      </div>
-      <div class="prog-card rw" data-d="2" onclick="openProgModal(2)">
-        <div class="prog-thumb">📚<div class="prog-badge">Aktif</div></div>
-        <div class="prog-body">
-          <h3>Info Beasiswa Lengkap</h3>
-          <p>Informasi beasiswa dalam & luar negeri: KIP Kuliah, LPDP, Beasiswa Unggulan, dan internasional — lengkap dengan syarat, timeline, dan strategi terbaik.</p>
-          <div class="prog-tags"><span class="prog-tag">🇮🇩 Dalam Negeri</span><span class="prog-tag">🌏 Internasional</span></div>
-          <a href="#" class="prog-link-btn" onclick="openProgModal(2);return false">Lihat Detail →</a>
-        </div>
-      </div>
-      <div class="prog-card rw" data-d="3" onclick="openProgModal(3)">
-        <div class="prog-thumb">🗺️<div class="prog-badge">Baru</div></div>
-        <div class="prog-body">
-          <h3>Panduan Jurusan & Kampus</h3>
-          <p>Membantu pelajar memilih jurusan dan universitas yang sesuai, memahami seleksi masuk PTN/PTS, serta peluang karir setelah lulus.</p>
-          <div class="prog-tags"><span class="prog-tag">🏛️ PTN & PTS</span><span class="prog-tag">💼 Karir</span></div>
-          <a href="#" class="prog-link-btn" onclick="openProgModal(3);return false">Lihat Detail →</a>
-        </div>
-      </div>
-      <div class="prog-card rw" data-d="4" onclick="openProgModal(4)">
-        <div class="prog-thumb">🌐<div class="prog-badge">Eksklusif</div></div>
-        <div class="prog-body">
-          <h3>Jaringan Beasiswa Internasional</h3>
-          <p>Kerja sama dengan lembaga pemberi beasiswa dalam & luar negeri untuk memperluas akses, pelatihan eksklusif, dan jaringan mahasiswa penerima.</p>
-          <div class="prog-tags"><span class="prog-tag">🤝 Lembaga Mitra</span><span class="prog-tag">🌍 Global</span></div>
-          <a href="#" class="prog-link-btn" onclick="openProgModal(4);return false">Lihat Detail →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="dampak">
-  <div class="wrap">
-    <div class="dampak-panel">
-      <div class="dampak-title">
-        <h2>Dampak Nyata SPM Foundation 📊</h2>
-        <p>Angka yang berbicara tentang komunitas kami — dari 2024 hingga kini</p>
-      </div>
-      <div class="dampak-grid">
-        <div class="dk-card rw"><span class="dk-icon">👥</span><span class="dk-val" data-c="31900">0</span><span class="dk-lbl">Pengikut Instagram</span></div>
-        <div class="dk-card rw" data-d="1"><span class="dk-icon">📨</span><span class="dk-val" data-c="1538">0</span><span class="dk-lbl">Total Kiriman</span></div>
-        <div class="dk-card rw" data-d="2"><span class="dk-icon">🤝</span><span class="dk-val" data-c="3">0</span><span class="dk-lbl">Partnership Aktif</span></div>
-        <div class="dk-card rw" data-d="3"><span class="dk-icon">🎓</span><span class="dk-val" data-c="6">0</span><span class="dk-lbl">Founder</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="roadmap" style="padding:80px 0">
-  <div class="wrap">
-    <div class="sec-hdr center" style="position:relative;z-index:1">
-      <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">🗓️ Roadmap</div>
-      <h2 class="sec-h2 rw" data-d="1" style="color:var(--white)">Rencana & <span style="color:var(--sun)">Target Kami</span></h2>
-      <p class="sec-p rw" data-d="2" style="color:rgba(255,255,255,.55);margin:0 auto">Langkah strategis SPM Foundation untuk terus berkembang dan memberikan dampak lebih besar bagi pendidikan Indonesia.</p>
-    </div>
-    <div class="roadmap-grid" style="margin-top:3rem">
-      <div class="rm-card rw">
-        <div class="rm-year">2024</div>
-        <div class="rm-num">1</div>
-        <h3>Fondasi</h3>
-        <p>Membangun komunitas FPMBI, transformasi ke SPM Community lalu SPM Foundation. Menjalin partnership pertama.</p>
-      </div>
-      <div class="rm-card rw" data-d="1">
-        <div class="rm-year">2026</div>
-        <div class="rm-num">2</div>
-        <h3>Ekspansi</h3>
-        <p>Memperluas jangkauan ke seluruh Indonesia, menambah program beasiswa, dan meningkatkan jumlah partnership strategis.</p>
-      </div>
-      <div class="rm-card rw" data-d="2">
-        <div class="rm-year">2026</div>
-        <div class="rm-num">3</div>
-        <h3>Inovasi</h3>
-        <p>Meluncurkan platform digital terpadu, aplikasi mobile, dan program mentoring online untuk seluruh Indonesia.</p>
-      </div>
-      <div class="rm-card rw" data-d="3">
-        <div class="rm-year">2027+</div>
-        <div class="rm-num">4</div>
-        <h3>Dampak Global</h3>
-        <p>Menjalin kerja sama internasional, membuka peluang beasiswa luar negeri eksklusif bagi anggota SPM Foundation.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="testimoni">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-sun rw">💬 Testimoni</div>
-      <h2 class="sec-h2 rw" data-d="1">Kata Mereka tentang <em>SPM Foundation</em></h2>
-      <p class="sec-p rw" data-d="2">Pengalaman nyata anggota komunitas yang merasakan manfaat program dan informasi dari SPM Foundation.</p>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card tc1 rw">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">Berkat info dari SPM Foundation, saya berhasil lolos seleksi KIP Kuliah 2024. Panduan langkah demi langkah yang diberikan sangat membantu saya yang berasal dari keluarga sederhana.</p>
-        <div class="testi-author">
-          <div class="testi-av">AR</div>
-          <div><div class="testi-name">Ahmad Rifqi</div><div class="testi-sub">Mahasiswa UGM, Penerima KIP Kuliah</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
-        </div>
-      </div>
-      <div class="testi-card tc2 rw" data-d="1">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">Sharing session LPDP yang diselenggarakan SPM Foundation memberikan insight luar biasa. Narasumbernya adalah penerima LPDP aktif yang berbagi strategi nyata, bukan teori.</p>
-        <div class="testi-author">
-          <div class="testi-av">NF</div>
-          <div><div class="testi-name">Nurhaliza Fitri</div><div class="testi-sub">Mahasiswi UNAIR, Calon Awardee LPDP</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
-        </div>
-      </div>
-      <div class="testi-card tc3 rw" data-d="2">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">Komunitas ini benar-benar membantu saya memilih jurusan yang tepat. Panduan dan diskusi yang ada membuka wawasan saya tentang berbagai pilihan karir yang tersedia setelah lulus.</p>
-        <div class="testi-author">
-          <div class="testi-av">BP</div>
-          <div><div class="testi-name">Bima Pratama</div><div class="testi-sub">Siswa SMAN 1 Jakarta</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
-        </div>
-      </div>
-      <div class="testi-card tc4 rw">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">Informasi beasiswa internasional yang dibagikan sangat akurat dan up-to-date. Saya berhasil menemukan beasiswa dari negara yang bahkan belum pernah saya dengar sebelumnya!</p>
-        <div class="testi-author">
-          <div class="testi-av">RS</div>
-          <div><div class="testi-name">Rania Safitri</div><div class="testi-sub">Mahasiswi UI, Peraih Beasiswa Turki</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
-        </div>
-      </div>
-      <div class="testi-card tc5 rw" data-d="1">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">Mentoring 1-on-1 dengan kakak penerima KIPK sangat membantu. Saya bisa bertanya hal-hal spesifik yang tidak bisa saya temukan di internet. Hasilnya saya lulus seleksi!</p>
-        <div class="testi-author">
-          <div class="testi-av">DW</div>
-          <div><div class="testi-name">Dika Wulandari</div><div class="testi-sub">Mahasiswi UNDIP, Penerima KIPK 2024</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
-        </div>
-      </div>
-      <div class="testi-card tc6 rw" data-d="2">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">SPM Foundation bukan sekadar komunitas biasa. Ini adalah keluarga yang peduli dengan masa depan pendidikan kita. Sangat merekomendasikan kepada semua pelajar Indonesia!</p>
-        <div class="testi-author">
-          <div class="testi-av">MZ</div>
-          <div><div class="testi-name">Muhammad Zaki</div><div class="testi-sub">Mahasiswa ITS Surabaya</div><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="quiz">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-violet rw">🧠 Uji Pengetahuan</div>
-      <h2 class="sec-h2 rw" data-d="1">Seberapa Paham Kamu tentang <em>Beasiswa</em>?</h2>
-      <p class="sec-p rw" data-d="2">Jawab pertanyaan berikut dan cari tahu seberapa siap kamu mendaftar beasiswa impian!</p>
-    </div>
-    <div class="quiz-wrap rw">
-      <div class="quiz-progress"><div class="quiz-prog-fill" id="quizProg" style="width:0"></div></div>
-      <div id="quizContent">
-        <div class="quiz-question" id="quizQ">Pertanyaan akan muncul di sini</div>
-        <div class="quiz-sub" id="quizSub">Pilih salah satu jawaban yang paling tepat</div>
-        <div class="quiz-options" id="quizOpts"></div>
-        <div class="quiz-nav">
-          <span class="quiz-counter" id="quizCtr">1 / 5</span>
-          <button class="btn-solid" id="quizNext" onclick="nextQ()" style="display:none;padding:10px 24px">Lanjut →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kalkulator">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-sky rw">🧮 Kalkulator</div>
-      <h2 class="sec-h2 rw" data-d="1">Kalkulator <em>Peluang Beasiswa</em></h2>
-      <p class="sec-p rw" data-d="2">Estimasikan peluang kamu mendapatkan beasiswa berdasarkan profil akademik dan kondisimu.</p>
-    </div>
-    <div class="calc-wrap rw">
-      <div class="calc-head">
-        <span class="calc-head-icon">🎯</span>
-        <h3>Kalkulator Peluang Beasiswa KIPK</h3>
-      </div>
-      <div class="calc-body">
-        <div class="calc-row">
-          <div class="calc-fg">
-            <label>Nilai Rata-rata Rapor (0-100)</label>
-            <input type="number" id="cNilai" min="60" max="100" value="85" oninput="calcUpdate()">
-          </div>
-          <div class="calc-fg">
-            <label>Penghasilan Orang Tua (juta/bulan)</label>
-            <input type="number" id="cPenghasilan" min="0" max="20" value="3" oninput="calcUpdate()">
-          </div>
-        </div>
-        <div class="calc-row">
-          <div class="calc-fg">
-            <label>Status Sosial</label>
-            <select id="cStatus" onchange="calcUpdate()">
-              <option value="3">Tidak Mampu (KKS/PKH)</option>
-              <option value="2" selected>Menengah Bawah</option>
-              <option value="1">Menengah</option>
-            </select>
-          </div>
-          <div class="calc-fg">
-            <label>Prestasi Akademik</label>
-            <select id="cPrestasi" onchange="calcUpdate()">
-              <option value="3">Juara Nasional / Olimpiade</option>
-              <option value="2" selected>Juara Sekolah / Kota</option>
-              <option value="1">Tidak Ada Prestasi Khusus</option>
-            </select>
-          </div>
-        </div>
-        <div class="calc-result">
-          <div class="calc-res-item">
-            <span class="calc-res-val" id="cResPerluang">0%</span>
-            <span class="calc-res-lbl">Peluang KIPK</span>
-          </div>
-          <div class="calc-res-item">
-            <span class="calc-res-val" id="cResLPDP">0%</span>
-            <span class="calc-res-lbl">Peluang LPDP*</span>
-          </div>
-          <div class="calc-res-item">
-            <span class="calc-res-val" id="cResSkor">0</span>
-            <span class="calc-res-lbl">Skor Profil</span>
-          </div>
-        </div>
-        <p style="font-size:11px;color:var(--gray3);text-align:center;margin-top:1rem">* Estimasi kasar berdasarkan faktor umum. Hasil aktual bergantung pada kebijakan resmi penyelenggara beasiswa.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-coral rw">❓ FAQ</div>
-      <h2 class="sec-h2 rw" data-d="1">Pertanyaan yang <em>Sering Ditanya</em></h2>
-      <p class="sec-p rw" data-d="2">Temukan jawaban atas pertanyaan umum seputar SPM Foundation dan program beasiswa yang kami informasikan.</p>
-    </div>
-    <div class="faq-list rw">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <h4>Apa itu SPM Foundation dan bagaimana cara bergabung?</h4>
-          <div class="faq-arrow">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">SPM Foundation (Sahabat Pendidikan Maju Foundation) adalah komunitas pendidikan yang berdiri sejak 2024, berawal dari FPMBI. Untuk bergabung, kamu bisa mengikuti akun Instagram @spm_foundation atau menghubungi kami melalui email fpmbicommunity@gmail.com. Keanggotaan komunitas ini gratis dan terbuka untuk semua pelajar dan mahasiswa Indonesia.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <h4>Apakah SPM Foundation membantu dalam proses pendaftaran KIP Kuliah?</h4>
-          <div class="faq-arrow">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Ya! Program utama kami adalah Pembinaan Pejuang KIP Kuliah. Kami menyediakan panduan lengkap pendaftaran, pelatihan penyusunan esai, mentoring 1-on-1 dengan penerima KIPK aktif, dan konsultasi pemilihan jurusan. Semua program ini dirancang untuk memaksimalkan peluangmu lolos seleksi.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <h4>Jenis beasiswa apa saja yang diinformasikan oleh SPM Foundation?</h4>
-          <div class="faq-arrow">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Kami menginformasikan berbagai jenis beasiswa, mulai dari KIP Kuliah (KIPK), LPDP dalam dan luar negeri, Beasiswa Unggulan Kemendikbud, Beasiswa Bidikmisi, hingga beasiswa internasional dari berbagai negara seperti Turki (YTB), DAAD Jerman, Chevening UK, dan masih banyak lagi. Semua informasi dilengkapi syarat, timeline, dan tips strategi pendaftaran.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <h4>Seberapa sering SPM Foundation mengadakan sharing session?</h4>
-          <div class="faq-arrow">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">SPM Foundation rutin mengadakan sharing session setiap bulan. Narasumber yang dihadirkan adalah penerima beasiswa aktif, alumni dari berbagai universitas terkemuka, serta tokoh inspiratif di bidang pendidikan. Informasi jadwal terbaru selalu diupdate di Instagram @spm_foundation.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <h4>Siapa saja founder SPM Foundation?</h4>
-          <div class="faq-arrow">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">SPM Foundation didirikan oleh 6 mahasiswa berprestasi: Rustanto (Universitas Negeri Semarang, 2023), Safinaturrahmah (Universitas Mataram, 2021), Moh. Ulil Absor (Universitas Trisakti, 2023), Safta Arwandi C.Ps. (UIN Raden Fatah, 2023), Maulana Hanif Zulkhoirurroziqin (Universitas Negeri Semarang, 2023), dan Midun Okta Apandi (STAI Baturaja, 2022).</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <h4>Bagaimana cara mengajukan partnership dengan SPM Foundation?</h4>
-          <div class="faq-arrow">+</div>
-        </div>
-        <div class="faq-a"><div class="faq-a-inner">Untuk mengajukan partnership, kamu bisa mengisi formulir di halaman kontak kami, atau mengirim email langsung ke fpmbicommunity@gmail.com dengan subject "Proposal Partnership". Tim kami akan merespons dalam 1×24 jam. Saat ini kami telah bermitra dengan Indonesian Intellectuals, LDK Al-Mufid STAI Baturaja, dan Forum Pemuda Sosial ID Community.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="founder">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-violet rw">👥 Biodata Founder</div>
-      <h2 class="sec-h2 rw" data-d="1">Enam <em>Pendiri</em> SPM Foundation</h2>
-      <p class="sec-p rw" data-d="2">Mereka yang memulai perjalanan ini — enam mahasiswa dengan visi yang sama untuk memajukan pendidikan Indonesia.</p>
-    </div>
-    <div class="founder-intro-box rw">
-      <p>SPM Foundation didirikan pada tahun 2024 oleh enam founder yang memiliki visi yang sama dalam mendukung akses pendidikan bagi pelajar dan mahasiswa. Berawal dari FPMBI, berkembang menjadi SPM Community pada Juli 2024, lalu menjadi SPM Foundation pada November 2024. Dengan semangat kolaborasi, SPM Foundation terus berkembang dan menjalin berbagai partnership.</p>
-    </div>
-    <div class="founder-grid">
-      <div class="founder-card fc0 rw">
-        <div class="founder-avatar">R</div>
-        <h4>Rustanto</h4>
-        <div class="founder-role">Founder 1</div>
-        <p>Mahasiswa aktif dengan semangat tinggi dalam membangun ekosistem pendidikan yang lebih merata di seluruh Indonesia.</p>
-        <div class="founder-univ-pill">🏛️ Universitas Negeri Semarang · 2023</div>
-      </div>
-      <div class="founder-card fc1 rw" data-d="1">
-        <div class="founder-avatar">S</div>
-        <h4>Safinaturrahmah</h4>
-        <div class="founder-role">Founder 2</div>
-        <p>Mahasiswi berprestasi yang berkomitmen membantu sesama mendapatkan akses beasiswa dan informasi pendidikan terbaik.</p>
-        <div class="founder-univ-pill">🏛️ Universitas Mataram · 2021</div>
-      </div>
-      <div class="founder-card fc2 rw" data-d="2">
-        <div class="founder-avatar">MA</div>
-        <h4>Moh. Ulil Absor</h4>
-        <div class="founder-role">Founder 3</div>
-        <p>Visioner muda yang mendorong kolaborasi antarmahasiswa untuk kemajuan pendidikan nasional dan pemerataan akses.</p>
-        <div class="founder-univ-pill">🏛️ Universitas Trisakti · 2023</div>
-      </div>
-      <div class="founder-card fc3 rw" data-d="3">
-        <div class="founder-avatar">SA</div>
-        <h4>Safta Arwandi, C.Ps.</h4>
-        <div class="founder-role">Founder 4</div>
-        <p>Psikolog muda yang memastikan program komunitas berdampak optimal bagi perkembangan psikologis dan akademik anggota.</p>
-        <div class="founder-univ-pill">🏛️ UIN Raden Fatah · 2023</div>
-      </div>
-      <div class="founder-card fc4 rw" data-d="1">
-        <div class="founder-avatar">MH</div>
-        <h4>Maulana Hanif Z.</h4>
-        <div class="founder-role">Founder 5</div>
-        <p>Aktivis pendidikan yang aktif mendorong pemerataan informasi beasiswa ke seluruh penjuru Indonesia dari Sabang sampai Merauke.</p>
-        <div class="founder-univ-pill">🏛️ Universitas Negeri Semarang · 2023</div>
-      </div>
-      <div class="founder-card fc5 rw" data-d="2">
-        <div class="founder-avatar">MO</div>
-        <h4>Midun Okta Apandi</h4>
-        <div class="founder-role">Founder 6</div>
-        <p>Penggerak komunitas yang membangun jaringan solidaritas dan kekeluargaan antar mahasiswa penerima beasiswa seluruh Indonesia.</p>
-        <div class="founder-univ-pill">🏛️ STAI Baturaja · 2022</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="partner">
-  <div class="wrap">
-    <div class="sec-hdr center">
-      <div class="sec-tag tag-sky rw">🤝 Partnership</div>
-      <h2 class="sec-h2 rw" data-d="1">Mitra <em>Strategis</em> Kami</h2>
-      <p class="sec-p rw" data-d="2">SPM Foundation menjalin kemitraan dengan berbagai organisasi untuk memperluas dampak dan membuka peluang lebih luas bagi anggota komunitas.</p>
-    </div>
-    <div class="partner-grid">
-      <div class="partner-card rw">
-        <div class="partner-logo-wrap">🦅</div>
-        <h4>Indonesian Intellectuals</h4>
-        <p>Komunitas intelektual Indonesia yang berkomitmen pada pengembangan ilmu pengetahuan dan peningkatan kapasitas generasi muda bangsa.</p>
-        <div class="partner-since">📅 Partnership sejak Februari 2024</div>
-      </div>
-      <div class="partner-card rw" data-d="1">
-        <div class="partner-logo-wrap">🕌</div>
-        <h4>LDK Al-Mufid STAI Baturaja</h4>
-        <p>Lembaga Dakwah Kampus Al-Mufid STAI Baturaja — organisasi mahasiswa yang aktif dalam pengembangan karakter dan prestasi akademik.</p>
-        <div class="partner-since">📅 Partnership sejak Januari 2025</div>
-      </div>
-      <div class="partner-card rw" data-d="2">
-        <div class="partner-logo-wrap">🌟</div>
-        <h4>Forum Pemuda Sosial ID Community</h4>
-        <p>Komunitas pemuda Indonesia yang bergerak di bidang sosial dan pemberdayaan masyarakat untuk Indonesia yang lebih baik dan sejahtera.</p>
-        <div class="partner-since">📅 Partnership sejak Januari 2025</div>
-      </div>
-    </div>
-    <div class="partner-cta-wrap rw">
-      <p style="color:var(--gray4);margin-bottom:1.5rem;font-size:15px">Tertarik bermitra dengan SPM Foundation?</p>
-      <button class="btn-solid" onclick="openModal('mPartner')" style="display:inline-flex;align-items:center;gap:.5rem">📩 Ajukan Partnership</button>
-    </div>
-  </div>
-</section>
-
-<section id="berita">
-  <div class="wrap">
-    <div class="sec-hdr" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem">
-      <div>
-        <div class="sec-tag tag-sky rw">📰 Berita & Kegiatan</div>
-        <h2 class="sec-h2 rw" data-d="1">Update <em>Terkini</em></h2>
-      </div>
-      <button class="btn-solid rw" onclick="toast('Semua Berita','Fitur ini segera hadir! Pantau Instagram kami.')">Lihat Semua →</button>
-    </div>
-    <div class="news-grid">
-      <div class="news-main rw" onclick="toast('📰 Berita','Halaman detail berita segera hadir!')">
-        <div class="news-main-thumb">📢<div class="news-main-badge">TERBARU</div></div>
-        <div class="news-main-body">
-          <h2>Info Lengkap KIP Kuliah 2026: Syarat, Timeline & Tips Lolos dari SPM Foundation</h2>
-          <p>SPM Foundation merangkum panduan lengkap KIP Kuliah 2026 — dari persyaratan, jadwal pendaftaran, hingga strategi ampuh agar lolos seleksi. Sharing session eksklusif bersama penerima KIPK aktif juga tersedia untuk anggota komunitas yang ingin bertanya langsung...</p>
-          <div class="news-meta"><span>📅 Januari 2026</span><span>✍️ Tim SPM Foundation</span><span>📸 @spm_foundation</span></div>
-        </div>
-      </div>
-      <div class="news-list">
-        <div class="news-item rw" onclick="toast('📰','Halaman berita segera hadir!')">
-          <div class="news-thumb" style="background:rgba(255,217,61,.15)">🏆</div>
-          <div><h4>SPM Foundation Resmi Jalin Partnership dengan FPS Community Januari 2025</h4><span>📅 Jan 2025</span></div>
-        </div>
-        <div class="news-item rw" data-d="1" onclick="toast('📰','Halaman berita segera hadir!')">
-          <div class="news-thumb" style="background:rgba(6,182,212,.1)">🎓</div>
-          <div><h4>Sharing Session LPDP: Strategi Lolos dari Alumni Penerima Beasiswa Luar Negeri</h4><span>📅 Des 2024</span></div>
-        </div>
-        <div class="news-item rw" data-d="2" onclick="toast('📰','Halaman berita segera hadir!')">
-          <div class="news-thumb" style="background:rgba(132,204,22,.1)">🌿</div>
-          <div><h4>Komunitas SPM Resmi Berganti Nama & Logo Jadi SPM Foundation November 2024</h4><span>📅 Nov 2024</span></div>
-        </div>
-        <div class="news-item rw" data-d="3" onclick="toast('📰','Halaman berita segera hadir!')">
-          <div class="news-thumb" style="background:rgba(168,85,247,.1)">🤝</div>
-          <div><h4>Indonesian Intellectuals Resmi Jadi Partner Pertama SPM Foundation Feb 2024</h4><span>📅 Feb 2024</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kontak">
-  <div class="wrap">
-    <div class="kontak-grid">
-      <div class="rw">
-        <div class="sec-tag rw" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2)">📬 Kontak</div>
-        <h2 class="sec-h2" style="color:var(--white);margin-top:.75rem">Mari <span style="color:var(--sky)">Terhubung</span> Bersama</h2>
-        <p class="sec-p" style="color:rgba(255,255,255,.6)">Punya pertanyaan soal beasiswa, ingin berkolaborasi, atau bergabung sebagai anggota komunitas? Kami siap membantu!</p>
-        <div class="kontak-links">
-          <a href="https://instagram.com/spm_foundation/" target="_blank" class="klink">
-            <div class="klink-icon">📸</div>
-            <div><h4>Instagram</h4><span>@spm_foundation · 31.900+ Pengikut</span></div>
-          </a>
-          <a href="#" class="klink">
-            <div class="klink-icon">🎵</div>
-            <div><h4>TikTok</h4><span>@spm_foundation</span></div>
-          </a>
-          <a href="mailto:fpmbicommunity@gmail.com" class="klink">
-            <div class="klink-icon">✉️</div>
-            <div><h4>Email</h4><span>fpmbicommunity@gmail.com</span></div>
-          </a>
-          <a href="https://linktr.ee/spm_foundation1724" target="_blank" class="klink">
-            <div class="klink-icon">🔗</div>
-            <div><h4>Linktree</h4><span>linktr.ee/spm_foundation1724</span></div>
-          </a>
-        </div>
-      </div>
-      <div class="kontak-form-box rw" data-d="1">
-        <div class="form-title">Kirim Pesan</div>
-        <div class="form-sub">Isi form ini dan kami akan merespons dalam 1×24 jam</div>
-        <div class="fg-row">
-          <div class="fg"><label>Nama Lengkap</label><input type="text" id="kNama" placeholder="Nama lengkap kamu"></div>
-          <div class="fg"><label>Email</label><input type="email" id="kEmail" placeholder="email@kamu.com"></div>
-        </div>
-        <div class="fg">
-          <label>Topik</label>
-          <select id="kTopik">
-            <option value="">— Pilih Topik —</option>
-            <option>Info Beasiswa KIP Kuliah</option>
-            <option>Info Beasiswa LPDP</option>
-            <option>Sharing Session</option>
-            <option>Kemitraan / Kolaborasi</option>
-            <option>Bergabung Komunitas</option>
-            <option>Lainnya</option>
-          </select>
-        </div>
-        <div class="fg"><label>Pesan</label><textarea id="kPesan" placeholder="Tulis pesanmu di sini..."></textarea></div>
-        <button class="btn-send" onclick="submitKontak()">📨 Kirim Pesan Sekarang</button>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- ── Footer ── -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -853,11 +255,13 @@
   </div>
 </footer>
 
+<!-- ── Float Buttons ── -->
 <div class="float-group">
   <a href="https://wa.me/" target="_blank" class="float-btn fb-wa" title="WhatsApp">💬</a>
   <button class="float-btn fb-up" id="fbUp" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Ke atas">↑</button>
 </div>
 
+<!-- ── Modals ── -->
 <div class="modal-overlay" id="mProgram">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('mProgram')">✕</button>
@@ -900,16 +304,68 @@
   </div>
 </div>
 
-<script src="scripts/cursor.js"></script>
-<script src="scripts/ui.js"></script>
-<script src="scripts/nav.js"></script>
-<script src="scripts/scroll.js"></script>
-<script src="scripts/hero.js"></script>
-<script src="scripts/preloader.js"></script>
-<script src="scripts/programs.js"></script>
-<script src="scripts/forms.js"></script>
-<script src="scripts/faq.js"></script>
-<script src="scripts/quiz.js"></script>
-<script src="scripts/calculator.js"></script>
+<!-- ── Section Loader ── -->
+<script>
+  /**
+   * Memuat setiap file partial dari folder pages/ dan menyuntikkannya
+   * ke dalam placeholder div yang sesuai di halaman ini.
+   * Semua script JS (cursor, ui, nav, dst.) dijalankan setelah
+   * seluruh section selesai dimuat.
+   */
+  const PAGES = [
+    { id: 'page-tentang',     file: 'pages/tentang.html'     },
+    { id: 'page-sejarah',     file: 'pages/sejarah.html'     },
+    { id: 'page-visimisi',    file: 'pages/visimisi.html'    },
+    { id: 'page-program',     file: 'pages/program.html'     },
+    { id: 'page-dampak',      file: 'pages/dampak.html'      },
+    { id: 'page-founder',     file: 'pages/founder.html'     },
+    { id: 'page-partnership', file: 'pages/partnership.html' },
+    { id: 'page-kontak',      file: 'pages/kontak.html'      },
+  ];
+
+  const JS_MODULES = [
+    'scripts/cursor.js',
+    'scripts/ui.js',
+    'scripts/nav.js',
+    'scripts/scroll.js',
+    'scripts/hero.js',
+    'scripts/preloader.js',
+    'scripts/programs.js',
+    'scripts/forms.js',
+    'scripts/faq.js',
+    'scripts/quiz.js',
+    'scripts/calculator.js',
+  ];
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.body.appendChild(s);
+    });
+  }
+
+  async function loadSections() {
+    // Fetch & inject semua section secara paralel
+    await Promise.all(
+      PAGES.map(({ id, file }) =>
+        fetch(file)
+          .then(r => r.text())
+          .then(html => { document.getElementById(id).innerHTML = html; })
+          .catch(() => console.warn(`Gagal memuat: ${file}`))
+      )
+    );
+
+    // Setelah semua section ada di DOM, load JS secara berurutan
+    for (const src of JS_MODULES) {
+      await loadScript(src).catch(() => console.warn(`Gagal memuat script: ${src}`));
+    }
+  }
+
+  loadSections();
+</script>
+
 </body>
 </html>
